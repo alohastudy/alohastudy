@@ -14,8 +14,8 @@ function createUser(email, password, role) {
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }
-  if (role === 'banned') {
-    Roles.addUsersToRoles(userID, 'banned');
+  if (role === 'admin') {
+    Roles.addUsersToRoles(userID, 'admin');
   }
 }
 
