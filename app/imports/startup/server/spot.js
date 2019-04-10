@@ -27,8 +27,16 @@ Meteor.publish('SpotPersonal', function publish() {
 
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('SpotAll', function publish() {
-  if (this.userId && !Roles.userIsInRole(this.userId, 'banned')) {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Spots.find();
+  }
+  return this.ready();
+});
+
+/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+Meteor.publish('SpotVerified', function publish() {
+  if (this.userId && !Roles.userIsInRole(this.userId, 'banned')) {
+    return Spots.find({ verified: true});
   }
   return this.ready();
 });

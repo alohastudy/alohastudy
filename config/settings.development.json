@@ -2,7 +2,8 @@
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" },
-    { "email": "banned@foo.com", "password": "changeme", "role": "banned" }
+    { "email": "banned@foo.com", "password": "changeme", "role": "banned" },
+    { "email": "verified@foo.com", "password": "changeme", "role": "verified" }
   ],
 
   "defaultData": [
@@ -21,11 +22,46 @@
       "owner": "john@foo.com"
     },
 
+    { "name": "Some cool benches again",
+      "image1": "https://i.imgur.com/oLP3qva.jpg", "image2": "https://i.imgur.com/fXxRjJz.jpg", "image3": "https://i.imgur.com/vkD1NzQ.jpg", "image4": "https://i.imgur.com/b5hAZVd.jpg", "image5": "https://i.imgur.com/geFxYDh.jpg",
+      "description": "Sample benches taken from an album of benches around Tokyo",
+      "rating": "5", "verified": true, "outlets": "None", "noisiness": "Quiet",
+      "location": "outdoors",
+      "owner": "john@foo.com"
+    },
+
+
+    { "name": "Some cool benches UNVERIFIED",
+      "image1": "https://i.imgur.com/oLP3qva.jpg", "image2": "https://i.imgur.com/fXxRjJz.jpg", "image3": "https://i.imgur.com/vkD1NzQ.jpg", "image4": "https://i.imgur.com/b5hAZVd.jpg", "image5": "https://i.imgur.com/geFxYDh.jpg",
+      "description": "Sample benches taken from an album of benches around Tokyo",
+      "rating": "5", "verified": false, "outlets": "None", "noisiness": "Quiet",
+      "location": "outdoors",
+      "owner": "john@foo.com"
+    },
+
 
     { "name": "Some cool chairs",
+      "image1": "https://i.imgur.com/nOmEk5S.jpg", "image2": "https://i.imgur.com/eoEg3t9.jpg", "image3": "https://i.imgur.com/eoEg3t9.jpg", "image4": "https://i.imgur.com/eoEg3t9.jpg", "image5": "https://i.imgur.com/eoEg3t9.jpg",
+      "description": "These are some sample chairs found online",
+      "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
+      "location": "indoors",
+      "owner": "john@foo.com"
+    },
+
+
+    { "name": "Some cool chairs but empty pictures",
       "image1": "https://i.imgur.com/nOmEk5S.jpg", "image2": "https://i.imgur.com/eoEg3t9.jpg", "image3": "", "image4": "", "image5": "",
       "description": "These are some sample chairs found online",
-      "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Loud",
+      "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
+      "location": "indoors",
+      "owner": "john@foo.com"
+    },
+
+
+    { "name": "Some cool chairs but space pictures",
+      "image1": "https://i.imgur.com/nOmEk5S.jpg", "image2": "https://i.imgur.com/eoEg3t9.jpg", "image3": " ", "image4": " ", "image5": " ",
+      "description": "These are some sample chairs found online",
+      "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
       "location": "indoors",
       "owner": "john@foo.com"
     }

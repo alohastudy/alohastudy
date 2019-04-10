@@ -9,10 +9,22 @@ const Spots = new Mongo.Collection('Spots');
 const SpotSchema = new SimpleSchema({
   name: String,
   image1: String,
-  image2: String,
-  image3: String,
-  image4: String,
-  image5: String,
+  image2: {
+    type: String,
+    optional: true,
+  },
+  image3: {
+    type: String,
+    optional: true,
+  },
+  image4: {
+    type: String,
+    optional: true,
+  },
+  image5: {
+    type: String,
+    optional: true,
+  },
   description: String,
   rating: Number,
   verified: Boolean,
