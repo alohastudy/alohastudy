@@ -15,6 +15,7 @@ const SpotSchema = new SimpleSchema({
   image5: String,
   description: String,
   rating: Number,
+  verified: Boolean,
   outlets: {
     type: String,
     allowedValues: ['None', 'Few', 'Many'],
