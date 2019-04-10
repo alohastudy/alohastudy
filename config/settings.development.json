@@ -10,5 +10,24 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultSpots": [
+    { "name": "Some cool benches",
+      "image1": "https://i.imgur.com/oLP3qva.jpg", "image2": "https://i.imgur.com/fXxRjJz.jpg", "image3": "https://i.imgur.com/vkD1NzQ.jpg", "image4": "https://i.imgur.com/b5hAZVd.jpg", "image5": "https://i.imgur.com/geFxYDh.jpg",
+      "description": "Sample benches taken from an album of benches around Tokyo",
+      "rating": "5", "outlets": "None", "noisiness": "Quiet",
+      "location": "outdoors",
+      "owner": "john@foo.com"
+    },
+
+
+    { "name": "Some cool chairs",
+      "image1": "https://i.imgur.com/nOmEk5S.jpg", "image2": "https://i.imgur.com/eoEg3t9.jpg", "image3": "", "image4": "", "image5": "",
+      "description": "These are some sample chairs found online",
+      "rating": "3", "outlets": "Many", "noisiness": "Loud",
+      "location": "indoors",
+      "owner": "john@foo.com"
+    }
   ]
 }
