@@ -12,6 +12,7 @@ import ListSpot from '../pages/ListSpot';
 import ListSpotAdmin from '../pages/ListSpotAdmin';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
+import AddSpot from '../pages/AddSpot';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -33,6 +34,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/listSpots" component={ListSpot}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
+              <ProtectedRoute path="/addSpots" component={AddSpot}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/adminSpots" component={ListSpotAdmin}/>
