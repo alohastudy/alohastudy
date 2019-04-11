@@ -5,7 +5,7 @@ import { Divider } from 'semantic-ui-react';
 class Footer extends React.Component {
   render() {
     const divStyle = { paddingTop: '15px' };
-    const dividerStyle = { width: '500px', margin: "auto" };
+    const dividerStyle = { width: '500px', margin: 'auto' };
     return (
         <footer>
           <div style={divStyle} className="ui center aligned container">
