@@ -12,14 +12,15 @@ class Landing extends React.Component {
               <Card centered fluid>
                 <Card.Content>
                   <h1>Welcome to Aloha Study!</h1>
-                  <p>designed to provide students a listing of hidden study spots. In this site, you will be provided a
-                    listing with ratings, hours, capacity, accessibility, and capabilities of each study spot. It will
-                    also include a feature allowing students to give real-time feedback if it’s either used or not used
-                    with a timestamp.</p>
+                  <p>This website is designed to provide students a listing of hidden study spots. In this site, you
+                    will be provided a list of spots providing reviews, hours, capacity, accessibility, and capabilities
+                    of each study spot. It also
+                    will include a feature allowing students to give real-time feedback of being at the spot with a
+                    timestamp.</p>
                   <h1>How to use this site:</h1>
                   <List bulleted>
-                    <List.Item>Go to spots page to view spots </List.Item>
-                    <List.Item>Go to spots page to view spots </List.Item>
+                    <List.Item>The spots tab will direct you to a list of spots</List.Item>
+                    <List.Item>The </List.Item>
                     <List.Item>Go to spots page to view spots </List.Item>
                     <List.Item>Go to spots page to view spots </List.Item>
                   </List>
