@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Image, Segment, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -35,7 +35,7 @@ class SpotItem extends React.Component {
               </div>) : ('')}
               {this.props.spot.rating <= 1 ? (<div><Icon name='star' color='yellow'/></div>) : ('')}
             </Card.Header>
-            <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
+            <Card.Meta><Link to={`/view/${this.props.spot._id}`}>Created by {this.props.spot.owner}</Link></Card.Meta>
             {this.props.spot.noisiness === 'Noisy' ? ('🔊 Noisy') : ('')}
             {this.props.spot.noisiness === 'Moderate' ? ('🔉 Moderate') : ('')}
             {this.props.spot.noisiness === 'Quiet' ? ('🔈 Quiet') : ('')}
