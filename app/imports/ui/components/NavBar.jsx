@@ -20,7 +20,7 @@ class NavBar extends React.Component {
           <Image size='medium' src='/images/logo10.png'/>
         </Menu.Item>
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink}  activeClassName="active" exact to="/add" key='add' style={itemStyle}>Add Spots</Menu.Item>,
+            [<Menu.Item as={NavLink}  activeClassName="active" exact to="/addSpots" key='addSpots' style={itemStyle}>Add Spots</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/listSpots" key='listSpots' style={itemStyle}>List Spots</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
