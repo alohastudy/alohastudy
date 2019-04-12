@@ -3,29 +3,31 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Header } from 'semantic-ui-react';
+import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px' };
+    const itemStyle = { marginTop: 'auto', fontSize: '25px', fontFamily: 'Righteous, cursive' };
     return (
-      <Menu style={menuStyle} attached="top" borderless inverted>
+      <Menu style={menuStyle} size='massive' attached='top' borderless inverted Style='background-color: #0ed145'>
+        <style>
+          @import url('https://fonts.googleapis.com/css?family=Righteous');
+        </style>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
-          <Header inverted as='h1'>meteor-application-template</Header>
+          <Image size='medium' src='/images/logo10.png'/>
         </Menu.Item>
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Stuff</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/addSpots" key='addSpots'>Add Spots</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/listSpots" key='listSpots'>List Spots</Menu.Item>]
+            [<Menu.Item as={NavLink}  activeClassName="active" exact to="/addSpots" key='addSpots' style={itemStyle}>Add Spots</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/listSpots" key='listSpots' style={itemStyle}>List Spots</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/adminSpots" key='adminSpots'>Admin Spots</Menu.Item>]
+            [<Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin' style={itemStyle}>Admin</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/adminSpots" key='adminSpots' style={itemStyle}>Admin Spots</Menu.Item>]
         ) : ''}
-        <Menu.Item position="right">
+        <Menu.Item position="right" style={itemStyle}>
           {this.props.currentUser === '' ? (
             <Dropdown text="Login" pointing="top right" icon={'user'}>
               <Dropdown.Menu>

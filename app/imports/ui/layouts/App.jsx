@@ -19,13 +19,14 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Banned from '../pages/Banned';
+import SpotInfo from '../pages/SpotInfo';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
     return (
         <Router>
-          <div>
+          <div Style='background-color: #36AA48'>
             <NavBar/>
             <Switch>
               <Route exact path="/" component={Landing}/>
@@ -36,6 +37,7 @@ class App extends React.Component {
               <ProtectedRoute path="/add" component={AddStuff}/>
               <ProtectedRoute path="/addSpots" component={AddSpot}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+              <ProtectedRoute path="/view/:_id" component={SpotInfo}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/adminSpots" component={ListSpotAdmin}/>
               <Route path="/signout" component={Signout}/>
@@ -51,7 +53,8 @@ class App extends React.Component {
 
 /**
  * ProtectedRoute (see React Router v4 sample)
- * Checks for Meteor login and not banned before routing to the requested page, otherwise goes to signin page if not logged in or banned page if banned.
+ * Checks for Meteor login and not banned before routing to the requested page, otherwise goes to
+ * signin page if not logged in or banned page if banned.
  * @param {any} { component: Component, ...rest }
  */
 const ProtectedRoute = ({ component: Component, ...rest }) => (

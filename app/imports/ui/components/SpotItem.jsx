@@ -1,7 +1,9 @@
 import React from 'react';
-import { Card, Image, Segment, Icon } from 'semantic-ui-react';
+import { Card, Image, Segment} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import Rating from '/imports/ui/components/Rating';
+import SpotAttributes from '/imports/ui/components/SpotAttributes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -20,31 +22,10 @@ class SpotItem extends React.Component {
     return (
         <Card color={this.color} fluid>
           <Card.Content>
-            <Card.Header>{this.warning}{this.props.spot.name}&nbsp;
-              {this.props.spot.rating > 4 ? (<div><Icon name='star' color='yellow'/>
-              <Icon name='star' color='yellow'/><Icon name='star' color='yellow'/><Icon name='star' color='yellow'/>
-              <Icon name='star' color='yellow'/></div>) : ('')}
-              {this.props.spot.rating > 3 && this.props.spot.rating <= 4 ? (<div><Icon name='star' color='yellow'/>
-              <Icon name='star' color='yellow'/><Icon name='star' color='yellow'/>
-                <Icon name='star' color='yellow'/></div>) : ('')}
-              {this.props.spot.rating > 2 && this.props.spot.rating <= 3 ? (<div><Icon name='star' color='yellow'/>
-              <Icon name='star' color='yellow'/><Icon name='star' color='yellow'/>
-                </div>) : ('')}
-              {this.props.spot.rating > 1 && this.props.spot.rating <= 2 ? (<div><Icon name='star' color='yellow'/>
-                <Icon name='star' color='yellow'/>
-              </div>) : ('')}
-              {this.props.spot.rating <= 1 ? (<div><Icon name='star' color='yellow'/></div>) : ('')}
+            <Card.Header>{this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}</Link>&nbsp;<Rating rating={this.props.spot.rating}/>
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
-            {this.props.spot.noisiness === 'Noisy' ? ('🔊 Noisy') : ('')}
-            {this.props.spot.noisiness === 'Moderate' ? ('🔉 Moderate') : ('')}
-            {this.props.spot.noisiness === 'Quiet' ? ('🔈 Quiet') : ('')}
-            &nbsp;
-            {this.props.spot.outlets === 'None' ? ('🔋 No Outlet') : ('')}
-            {this.props.spot.outlets === 'Few' ? ('🔌 Few Outlets') : ('')}
-            {this.props.spot.outlets === 'Many' ? ('🔌 Many Outlets') : ('')}
-            &nbsp;
-            {this.props.spot.location === 'outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
+            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location}/>
             <br/>
             <br/>
             <Image.Group fluid floated='left'>

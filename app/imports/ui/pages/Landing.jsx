@@ -1,48 +1,174 @@
 import React from 'react';
-import { Grid, Card, Feed, List } from 'semantic-ui-react';
+import { Grid, Card, List, Container, Header, Segment, Image, Divider, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
-        <div className='img-background'>
-          <Grid verticalAlign='top' textAlign='left' padded container centered>
 
-            <Grid.Column width={9}>
-              <Card centered fluid>
-                <Card.Content>
-                  <h1>Welcome to Aloha Study!</h1>
-                  <p>designed to provide students a listing of hidden study spots. In this site, you will be provided a
-                    listing with ratings, hours, capacity, accessibility, and capabilities of each study spot. It will
-                    also include a feature allowing students to give real-time feedback if it’s either used or not used
-                    with a timestamp.</p>
-                  <h1>How to use this site:</h1>
-                  <List bulleted>
-                    <List.Item>Go to spots page to view spots </List.Item>
-                    <List.Item>Go to spots page to view spots </List.Item>
-                    <List.Item>Go to spots page to view spots </List.Item>
-                    <List.Item>Go to spots page to view spots </List.Item>
-                  </List>
-                  <h1>Symbols to look out for</h1>
-                  <List ordered>
-                  </List>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
+        <Container>
 
-            <Grid.Column width={5}>
-              <Card right fluid>
-                <Card.Content>
-                  <h1>Hot Spots</h1>
-                  <Feed>
-                    cool stuff about bench
-                  </Feed>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
+          <style>
+            @import url('https://fonts.googleapis.com/css?family=Righteous');
+          </style>
 
-          </Grid>
-        </div>
+          <Header
+              as='h1'
+              content='Aloha Study'
+              inverted
+              textAlign='center'
+              padded container centered
+              style={{fontSize: '80px',
+              marginTop: '100px',
+              marginBottom: '20px',
+                fontFamily: 'Righteous, cursive'}}
+          />
+          <Header
+              as='h1'
+              content='University of Hawaii at Manoa'
+              inverted
+              textAlign='center'
+              padded container centered
+              style={{fontSize: '60px',
+                marginTop: '30px',
+                marginBottom: '20px', fontFamily: 'Righteous, cursive'}}
+          />
+          <Header
+              as='h2'
+              content='Study Spots Within Reach'
+              inverted
+              textAlign='center'
+              padded container centered
+              style={{fontSize: '40px',
+                marginTop: '30px',
+                marginBottom: '170px', fontFamily: 'Righteous, cursive'}}
+          />
+
+          <Image fluid centered size='large' src='/images/logo10.png' style={{
+            marginTop: '30px',
+            marginBottom: '200px'}} />
+
+            <Segment borderless style={{ padding: '8em 0em' }} vertical>
+              <Grid container stackable inverted verticalAlign='middle'>
+                <Grid.Row>
+                  <Grid.Column width={8}>
+                    <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                      Need a place to crash and study?
+                    </Header>
+                    <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                     This website provides information on previously unknown areas that are free from inconvenience and noise.
+                    </p>
+                    <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                      What can we provide?
+                    </Header>
+                    <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                      We provide a listings of spots with information that you will always need to be a step ahead of everyone else. You will get ratings, hours of operation, capacity, accessibility, and capabilities of each spot.
+                    </p>
+                  </Grid.Column>
+                  <Grid.Column floated='right' width={6}>
+                    <Image bordered rounded size='large' src='/images/uh.jpg' />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Segment>
+
+          <Segment borderless style={{ padding: '8em 0em' }} vertical>
+            <Grid borderless container stackable inverted verticalAlign='middle'>
+              <Grid.Row>
+                <Grid.Column floated='left' width={6}>
+                  <Image bordered rounded size='large' src='/images/best.jpg' />
+                </Grid.Column>
+                <Grid.Column width={8}>
+                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                    Our Guarantee!
+                  </Header>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                    Only verified and admin users can post listings. That means that you'll never have to worry about inaccurate information!
+                  </p>
+                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                    Symbols of the Website
+                  </Header>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                    Each listing has an icon that helps you quickly see the status of each listing.
+                  </p>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+
+          <Segment style={{ padding: '8em 0em' }} vertical>
+            <Container text>
+              <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                Add Spots
+              </Header>
+              <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                This tab allows verified users and admins to add listings and metadata of the spot. Within this, you can add the name, images, and attributes. Users can input data and choose attributes from a dragdown menu.
+              </p>
+              <Link to={'/addSpots/'}>
+                <Button as='a' size='large'>
+                Add Spots
+                </Button>
+              </Link>
+
+              <Divider
+                  as='h4'
+                  className='header'
+                  horizontal
+                  style={{ margin: '3em 0em', textTransform: 'uppercase', color: 'white', fontFamily: 'Righteous, cursive'}}
+              >
+                <div>How to use the Site</div>
+              </Divider>
+
+              <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                List Spots
+              </Header>
+              <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                This tab allows all users to view the listing of verified spots. Within this, users can view all verified spots with the spot's name and attributes describing its condition.
+              </p>
+              <Link to={'/listSpots/'}>
+                <Button as='a' size='large'>
+                  List Spots
+                </Button>
+              </Link>
+            </Container>
+          </Segment>
+
+            <Segment style={{ padding: '0em' }} vertical>
+            <Grid inverted celled='internally' columns='equal' stackable>
+              <Grid.Row textAlign='center'>
+                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                   Who Are We?
+                  </Header>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>We are a team of students who currently attend the University of Hawaii at Manoa within the College of Engineering</p>
+                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                    ICS 314
+                  </Header>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>Our team is part of ICS 314 Software and Web Development; this website was built for our final project for the semester of Spring 2019.</p>
+                </Grid.Column>
+                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive'}}>
+                    Contact Us!
+                  </Header>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                    <Image size='tiny' avatar src='/images/isaac.jpg' />
+                    <b>&nbsp;&nbsp;Isaac Lee</b> - ilee72@hawaii.edu
+                  </p>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                    <Image size='tiny' avatar src='/images/andrew.jpg' />
+                    <b>&nbsp;&nbsp;Andrew Millard</b> - millarda@hawaii.edu
+                  </p>
+                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive'}}>
+                    <Image size='tiny' avatar src='/images/david.jpg' />
+                    <b>&nbsp;&nbsp;David Liang</b> - david947@hawaii.edu
+                  </p>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+
+        </Container>
     );
   }
 }

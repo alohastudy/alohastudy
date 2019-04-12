@@ -1,5 +1,3 @@
 .img-background {
-  background-color: darkgreen;
-  background: url('../public/images/back-image1.png');
-  background-size: cover;
+  background: url('/images/logo10.png') no-repeat center center fixed;
 }
