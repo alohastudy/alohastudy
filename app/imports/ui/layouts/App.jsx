@@ -18,13 +18,14 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Banned from '../pages/Banned';
+import { Grid } from 'semantic-ui-react';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
     return (
         <Router>
-          <div>
+          <div Style='background-color: #36AA48'>
             <NavBar/>
             <Switch>
               <Route exact path="/" component={Landing}/>
