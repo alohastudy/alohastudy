@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, Image, Segment} from 'semantic-ui-react';
+import { Button, Card, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
+import { Meteor } from "meteor/meteor";
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -16,6 +17,20 @@ class SpotItem extends React.Component {
       this.color = 'red';
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
+    if (this.props.spot.owner === Meteor.user().username) {
+      this.button = <Link to={'/editSpots/'}>
+        <Button as='a' size='large'>
+          Edit
+        </Button>
+      </Link>
+    }
+    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      this.button = <Link to={'/editSpots/'}>
+        <Button as='a' size='large'>
+          Edit
+        </Button>
+      </Link>
+    }
   }
 
   render() {
@@ -27,6 +42,7 @@ class SpotItem extends React.Component {
             <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location}/>
             <br/>
+            {this.button}
             <br/>
             <Image.Group fluid floated='left'>
               <Image Style="height: 150px;" src={this.props.spot.image1} />
