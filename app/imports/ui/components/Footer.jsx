@@ -4,16 +4,17 @@ import { Divider } from 'semantic-ui-react';
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const divStyle = { paddingTop: '15px' };
+    const divStyle = { paddingTop: '25px', color: 'white'};
     const dividerStyle = { width: '500px', margin: 'auto' };
     return (
         <footer>
           <div style={divStyle} borderless inverted Style='background-color: #36AA48' className="ui center aligned container">
             <hr />
+              AlohaStudy <br/>
               Created by <br/>
-              Isaac Lee, David Liang and Andrew Millard <br/>
-              <Divider inverted style={dividerStyle} className="ui center aligned"/>
-              Department of Information and Computer Sciences <br />
+              Isaac Lee, David Liang, and Andrew Millard <br/>
+              <Divider style={dividerStyle} className="ui center aligned"/>
+              College of Engineering <br />
               University of Hawaii<br />
               Honolulu, HI 96822
           </div>

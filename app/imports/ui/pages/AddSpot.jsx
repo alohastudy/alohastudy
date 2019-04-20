@@ -19,6 +19,13 @@ class AddSpot extends React.Component {
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
+    this.verify = false;
+    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      this.verify = true;
+    }
+    if(Roles.userIsInRole(Meteor.userId(), 'verified')) {
+      this.verify = true;
+    }
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -33,9 +40,9 @@ class AddSpot extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, quantity, condition } = data;
+    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location } = data;
     const owner = Meteor.user().username;
-    Spots.insert({ name, quantity, condition, owner }, this.insertCallback);
+    Spots.insert({ name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -48,12 +55,19 @@ class AddSpot extends React.Component {
               <Segment>
                 <TextField name='name'/>
                 <TextField name='description'/>
+                <TextField name='image1'/>
+                <TextField name='image2'/>
+                <TextField name='image3'/>
+                <TextField name='image4'/>
+                <TextField name='image5'/>
                 <SelectField placeholder='hello' name='outlets'/>
                 <SelectField name='noisiness'/>
                 <SelectField name='location'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
+                <HiddenField name='rating' value={3}/>
+                <HiddenField name='verified' value={this.verify}/>
               </Segment>
             </AutoForm>
           </Grid.Column>

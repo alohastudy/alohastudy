@@ -16,7 +16,7 @@ class SpotAttributes extends React.Component {
           {this.props.outlets === 'Few' ? ('🔌 Few Outlets') : ('')}
           {this.props.outlets === 'Many' ? ('🔌 Many Outlets') : ('')}
           &nbsp;
-          {this.props.location === 'outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
+          {this.props.location === 'Outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
         </div>
     );
   }
