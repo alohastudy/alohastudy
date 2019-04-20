@@ -1,9 +1,30 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" },
-    { "email": "banned@foo.com", "password": "changeme", "role": "banned" },
-    { "email": "verified@foo.com", "password": "changeme", "role": "verified" }
+    { "email": "admin@foo.com", "password": "changeme", "role": "admin"},
+    { "email": "john@foo.com", "password": "changeme"},
+    { "email": "banned@foo.com", "password": "changeme", "role": "banned"},
+    { "email": "verified@foo.com", "password": "changeme", "role": "verified"}
+  ],
+
+  "defaultProfiles": [
+    {
+      "firstName": "Admin", "secondName": "Adminson", "image": "https://i.ebayimg.com/images/i/192699315113-0-1/s-l1000.jpg", "status": "I am a cool admin", "bio": "Yes I am an admin, fear me for I have power mwahahahaha", "owner": "admin@foo.com"
+    },
+    { "firstName": "John", "secondName": "Smith",
+      "image": "https://static.turbosquid.com/Preview/2018/11/08__02_24_32/Lego_Woman_Generic_Person_thumbnail_0001.jpg3A18E7DE-A669-4EA4-808F-29DC45B2A740Default.jpg", "status": "It is I, John",
+      "bio": "I do things that are cool and stuff woop woop. many words",
+      "owner": "john@foo.com"
+    },
+    { "firstName": "Banned", "secondName": "Person",
+      "image": "http://2.bp.blogspot.com/-BPey9-Rhf7I/TcMviMn3RuI/AAAAAAAABg0/7MdwXaGwnCY/s1600/lego.jpg", "status": "Don't you trust me?",
+      "bio": "I love breaking the rules haha. I want to destroy society and build a new empire where we all wear tan",
+      "owner": "banned@foo.com"
+    },
+    { "firstName": "Quite", "secondName": "Trustworthy",
+      "image": "https://signaturebricks.com/media/catalog/product/cache/1/image/946x946/9df78eab33525d08d6e5fb8d27136e95/s/b/sb00032.jpg", "status": "Don't you trust me?",
+      "bio": "I love breaking the rules haha. I want to destroy society and build a new empire where we all wear tan",
+      "owner": "verified@foo.com"
+    }
   ],
 
   "defaultData": [

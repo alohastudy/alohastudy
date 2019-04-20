@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Segment} from 'semantic-ui-react';
+import { Card, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import Rating from '/imports/ui/components/Rating';
@@ -22,10 +22,13 @@ class SpotItem extends React.Component {
     return (
         <Card color={this.color} fluid>
           <Card.Content>
-            <Card.Header>{this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}</Link>&nbsp;<Rating rating={this.props.spot.rating}/>
+            <Card.Header>
+              {this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}</Link>
+              &nbsp;<Rating rating={this.props.spot.rating}/>
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
-            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location}/>
+            <SpotAttributes noisiness={this.props.spot.noisiness}
+                            outlets={this.props.spot.outlets} location={this.props.spot.location}/>
             <br/>
             <br/>
             <Image.Group fluid floated='left'>
