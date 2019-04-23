@@ -18,14 +18,14 @@ class SpotItem extends React.Component {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
     if (this.props.spot.owner === Meteor.user().username) {
-      this.button = <Link to={'/editSpots/'}>
+      this.button = <Link to={`/edit/${this.props.spot._id}`}>
         <Button as='a' size='large'>
           Edit
         </Button>
       </Link>
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      this.button = <Link to={'/editSpots/'}>
+      this.button = <Link to={`/edit/${this.props.spot._id}`}>
         <Button as='a' size='large'>
           Edit
         </Button>
