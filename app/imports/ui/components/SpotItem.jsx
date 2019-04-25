@@ -19,16 +19,16 @@ class SpotItem extends React.Component {
     }
     if (this.props.spot.owner === Meteor.user().username) {
       this.button = <Link to={`/edit/${this.props.spot._id}`}>
-        <Button as='a' size='large'>
+        <button class="ui green basic button" size='large'>
           Edit
-        </Button>
+        </button>
       </Link>
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.button = <Link to={`/edit/${this.props.spot._id}`}>
-        <Button as='a' size='large'>
+        <button class="ui green basic button" size='large'>
           Edit
-        </Button>
+        </button>
       </Link>
     }
   }
