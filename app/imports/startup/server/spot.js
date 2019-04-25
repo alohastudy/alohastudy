@@ -25,7 +25,7 @@ Meteor.publish('SpotPersonal', function publish() {
   return this.ready();
 });
 
-/** This subscription publishes all documents regardless of user*/
+/** This subscription publishes all documents regardless of user */
 Meteor.publish('SpotAll', function publish() {
   return Spots.find();
   return this.ready();

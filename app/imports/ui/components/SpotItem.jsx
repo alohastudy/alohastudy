@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
-import { Meteor } from "meteor/meteor";
+import { Meteor } from 'meteor/meteor';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -22,14 +22,14 @@ class SpotItem extends React.Component {
         <Button as='a' size='large'>
           Edit
         </Button>
-      </Link>
+      </Link>;
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.button = <Link to={'/editSpots/'}>
         <Button as='a' size='large'>
           Edit
         </Button>
-      </Link>
+      </Link>;
     }
   }
 
@@ -37,19 +37,20 @@ class SpotItem extends React.Component {
     return (
         <Card color={this.color} fluid>
           <Card.Content>
-            <Card.Header>{this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}</Link>&nbsp;<Rating rating={this.props.spot.rating}/>
+            <Card.Header>{this.warning}<Link to={`/view/${this.props.spot._id}`}>
+              {this.props.spot.name}</Link>&nbsp;<Rating rating={this.props.spot.rating}/>
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
-            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location}/>
+            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location} crowdedness={this.props.spot.crowdedness}/>
             <br/>
             {this.button}
             <br/>
             <Image.Group fluid floated='left'>
-              <Image Style="height: 150px;" src={this.props.spot.image1} />
-              <Image Style="height: 150px;" src={this.props.spot.image2} />
-              <Image Style="height: 150px;" src={this.props.spot.image3} />
-              <Image Style="height: 150px;" src={this.props.spot.image4} />
-              <Image Style="height: 150px;" src={this.props.spot.image5} />
+              <Image Style="height: 150px;" src={this.props.spot.image1}/>
+              <Image Style="height: 150px;" src={this.props.spot.image2}/>
+              <Image Style="height: 150px;" src={this.props.spot.image3}/>
+              <Image Style="height: 150px;" src={this.props.spot.image4}/>
+              <Image Style="height: 150px;" src={this.props.spot.image5}/>
             </Image.Group>
             <Card.Description>{this.props.spot.description}</Card.Description>
           </Card.Content>

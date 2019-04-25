@@ -33,8 +33,10 @@ class SpotInfo extends React.Component {
               <Grid.Row>
                 <Grid.Column width={12}>
                   <Header size='huge'>{this.props.doc.name}<Rating rating={this.props.doc.rating}/></Header>
-                  <div Style="margin-top: 40px;"><SpotAttributes noisiness={this.props.doc.noisiness}
-                   outlets={this.props.doc.outlets} location={this.props.doc.location}/></div>
+                  <div Style="margin-top: 40px;">
+                    <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets}
+                                    location={this.props.doc.location} crowdedness={this.props.doc.crowdedness}/>
+                  </div>
                 </Grid.Column>
                 <Grid.Column width={4} floated='right'>
                   <Card floated='right'>

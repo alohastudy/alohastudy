@@ -23,7 +23,7 @@ class AddSpot extends React.Component {
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.verify = true;
     }
-    if(Roles.userIsInRole(Meteor.userId(), 'verified')) {
+    if (Roles.userIsInRole(Meteor.userId(), 'verified')) {
       this.verify = true;
     }
   }
@@ -40,9 +40,9 @@ class AddSpot extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location } = data;
+    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowdedness } = data;
     const owner = Meteor.user().username;
-    Spots.insert({ name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, owner }, this.insertCallback);
+    Spots.insert({ name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowdedness, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -63,6 +63,7 @@ class AddSpot extends React.Component {
                 <SelectField placeholder='hello' name='outlets'/>
                 <SelectField name='noisiness'/>
                 <SelectField name='location'/>
+                <SelectField name='crowdedness'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
