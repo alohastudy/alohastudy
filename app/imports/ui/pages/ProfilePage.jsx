@@ -15,13 +15,12 @@ class ProfilePage extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    // const profile = Profiles.findOne({ owner: this.props.username })
     return (
         <Container>
-          <Header as="h2" textAlign="center">The Spots</Header>
-          {this.props.doc.firstName}
-          {this.props.doc.secondName}
+          <Header as="h2" textAlign="center">The Spots {this.props.name}</Header>
           <br/>
-          <Image Style="height: 150px;" src={this.props.doc.Image} />
+          profile: {this.props.profiles.bio}
         </Container>
     );
   }
@@ -29,18 +28,33 @@ class ProfilePage extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 ProfilePage.propTypes = {
-  doc: PropTypes.object,
+  name: PropTypes.string,
   profiles: PropTypes.object.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker((match) => {
+// {this.props.profiles.firstName}
+// profiles: Profiles.findOne({ owner: Meteor.users.find(documentId).username }),
+// profiles: PropTypes.object,
+export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Profile documents.
   const subscription = Meteor.subscribe('Profiles');
+  console.log('wow');
+  console.log(Profiles.find(documentId).fetch().length === 0);
+  console.log('wow again');
+  let profile = '';
+  if (Profiles.find(documentId).fetch().length === 0) {
+    profile = Profiles.findOne({ owner: Meteor.user().username });
+  } else {
+    profile = Profiles.findOne(documentId);
+  }
   return {
-    doc: Profiles.findOne({ owner: documentId }),
+    name: documentId,
     ready: subscription.ready(),
+    // profiles: Profiles.findOne({ owner: Meteor.users.findOne({ _id: documentId }).username }),
+    // profiles: Profiles.findOne(documentId),
+    profiles: profile,
   };
 })(ProfilePage);

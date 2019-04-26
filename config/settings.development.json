@@ -22,7 +22,7 @@
     },
     { "firstName": "Quite", "secondName": "Trustworthy",
       "image": "https://signaturebricks.com/media/catalog/product/cache/1/image/946x946/9df78eab33525d08d6e5fb8d27136e95/s/b/sb00032.jpg", "status": "Don't you trust me?",
-      "bio": "I love breaking the rules haha. I want to destroy society and build a new empire where we all wear tan",
+      "bio": "I love following the rules haha. following the rules is the best thing to do amirite fellas",
       "owner": "verified@foo.com"
     }
   ],
@@ -40,7 +40,7 @@
       "description": "Sample benches taken from an album of benches around Tokyo",
       "rating": "5", "verified": true, "outlets": "None", "noisiness": "Quiet",
       "location": "outdoors",
-      "owner": "john@foo.com"
+      "owner": "verified@foo.com"
     },
 
     { "name": "Some cool benches again",
@@ -48,7 +48,7 @@
       "description": "Sample benches taken from an album of benches around Tokyo",
       "rating": "5", "verified": true, "outlets": "None", "noisiness": "Quiet",
       "location": "outdoors",
-      "owner": "john@foo.com"
+      "owner": "admin@foo.com"
     },
 
 
