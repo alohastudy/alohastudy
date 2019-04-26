@@ -27,6 +27,7 @@ class App extends React.Component {
         <Router>
           <div Style='background-color: #36AA48'>
             <NavBar/>
+            <br/>
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
