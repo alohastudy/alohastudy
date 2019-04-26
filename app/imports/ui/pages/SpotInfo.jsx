@@ -42,7 +42,7 @@ class SpotInfo extends React.Component {
                   <Card floated='right'>
                     <Card.Content>
                       <Image floated='right' size='mini'
-                             src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'/>
+                             src={profile.image}/>
                       <Card.Header>{this.props.doc.owner}</Card.Header>
                       <Card.Meta>Creator</Card.Meta>
                       <Card.Description>
