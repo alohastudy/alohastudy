@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '/imports/api/profile/profile';
+import { Link } from 'react-router-dom';
 
 
 /** Renders the Page for editing a single document. */
@@ -43,7 +44,7 @@ class SpotInfo extends React.Component {
                     <Card.Content>
                       <Image floated='right' size='mini'
                              src={profile.image}/>
-                      <Card.Header>{this.props.doc.owner}</Card.Header>
+                      <Card.Header><Link to={`/profile/${profile._id}`}>{this.props.doc.owner}</Link></Card.Header>
                       <Card.Meta>Creator</Card.Meta>
                       <Card.Description>
                         {profile.status}
