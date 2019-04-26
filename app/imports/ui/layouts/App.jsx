@@ -35,7 +35,6 @@ class App extends React.Component {
               <ProtectedRoute path="/edit/:_id" component={EditSpot}/>
               <ProtectedRoute path="/view/:_id" component={SpotInfo}/>
               <ProtectedRoute path="/profile/:_id" component={ProfilePage}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <AdminProtectedRoute path="/adminSpots" component={ListSpotAdmin}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/banned" component={Banned}/>
