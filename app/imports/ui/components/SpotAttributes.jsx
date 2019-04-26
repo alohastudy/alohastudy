@@ -32,7 +32,7 @@ SpotAttributes.propTypes = {
   noisiness: PropTypes.string.isRequired,
   outlets: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  crowdedness: PropTypes.string,
+  crowdedness: PropTypes.string.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

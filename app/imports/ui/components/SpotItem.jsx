@@ -41,8 +41,9 @@ class SpotItem extends React.Component {
               {this.props.spot.name}</Link>&nbsp;<Rating rating={this.props.spot.rating}/>
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}</Card.Meta>
-            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location} crowdedness={this.props.spot.crowdedness}/>
+            <SpotAttributes crowdedness={this.props.spot.crowdedness} outlets={this.props.spot.outlets} location={this.props.spot.location}/>
             <br/>
+            <SpotAttributes> </SpotAttributes>
             {this.button}
             <br/>
             <Image.Group fluid floated='left'>
