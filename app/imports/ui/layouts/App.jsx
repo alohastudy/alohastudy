@@ -18,6 +18,7 @@ import Signout from '../pages/Signout';
 import Banned from '../pages/Banned';
 import SpotInfo from '../pages/SpotInfo';
 import ProfilePage from '../pages/ProfilePage';
+import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
               <ProtectedRoute path="/edit/:_id" component={EditSpot}/>
               <ProtectedRoute path="/view/:_id" component={SpotInfo}/>
               <ProtectedRoute path="/profile/:_id" component={ProfilePage}/>
+              <ProtectedRoute path="/editProfile/:_id" component={EditProfile}/>
               <AdminProtectedRoute path="/adminSpots" component={ListSpotAdmin}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/banned" component={Banned}/>

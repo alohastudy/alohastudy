@@ -5,7 +5,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Image, Loader } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
-import { Profiles } from '/imports/api/profile/profile';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
@@ -29,7 +28,7 @@ class NavBar extends React.Component {
           <Image size='medium' src='/images/logo10.png'/>
         </Menu.Item>
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink}  activeClassName="active" exact to="/addSpots" key='addSpots' style={itemStyle}>Add Spots</Menu.Item>,
+            [<Menu.Item as={NavLink} activeClassName="active" exact to="/addSpots" key='addSpots' style={itemStyle}>Add Spots</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/listSpots" key='listSpots' style={itemStyle}>List Spots</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (

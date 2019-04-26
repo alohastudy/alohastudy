@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Profiles, ProfileSchema } from '/imports/api/profile/profile';
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -22,9 +23,22 @@ export default class Signup extends React.Component {
     this.setState({ [name]: value });
   }
 
+  insertCallback(error) {
+    if (error) {
+      console.log('error');
+    } else {
+      console.log('no error');
+    }
+  }
+
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { email, password } = this.state;
+    console.log('inserting profile');
+    Profiles.insert({ firstName: 'Default', secondName: 'User',
+      image: 'http://atlas-content-cdn.pixelsquid.com/stock-images/neutral-lego-man-arms-down-y1vGAq3-600.jpg',
+      status: 'student', bio: 'Empty', owner: email });
+    console.log('finish inserting profile');
     Accounts.createUser({ email, username: email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });

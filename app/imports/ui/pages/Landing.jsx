@@ -10,7 +10,7 @@ class Landing extends React.Component {
         <Container>
 
           <style>
-            @import url('https://fonts.googleapis.com/css?family=Righteous');
+            @import url('https://fonts.googleapis.com/css?family=Righteous');{/*eslint-disable-line*/}
           </style>
 
           <Header

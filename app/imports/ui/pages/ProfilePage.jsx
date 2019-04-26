@@ -1,11 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Image, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Image, Card, Button} from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { Spots } from '/imports/api/spot/spot';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SpotItem from '/imports/ui/components/SpotItem';
+import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ProfilePage extends React.Component {
@@ -18,6 +19,10 @@ class ProfilePage extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     // const profile = Profiles.findOne({ owner: this.props.username })
+    let button = '';
+    if (Meteor.user().username === this.props.profiles.owner) {
+      button = <Link to={`/editProfile/${this.props.profiles._id}`}><Button>Edit Profile</Button></Link>;
+    }
     return (
         <Container>
           <Header as="h2" textAlign="center">{this.props.profiles.firstName} {this.props.profiles.secondName}&#39;s Profile</Header>
@@ -33,6 +38,9 @@ class ProfilePage extends React.Component {
                 <br/>
                 <br/>
                 Bio: {this.props.profiles.bio}
+                <br/>
+                <br/>
+                {button}
               </Card.Header>
             </Card.Content>
           </Card>
