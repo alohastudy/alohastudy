@@ -40,9 +40,9 @@ class AddSpot extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowdedness } = data;
+    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowd } = data;
     const owner = Meteor.user().username;
-    Spots.insert({ name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowdedness, owner }, this.insertCallback);
+    Spots.insert({ name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowd, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -63,7 +63,7 @@ class AddSpot extends React.Component {
                 <SelectField placeholder='hello' name='outlets'/>
                 <SelectField name='noisiness'/>
                 <SelectField name='location'/>
-                <SelectField name='crowdedness'/>
+                <SelectField name='crowd'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>

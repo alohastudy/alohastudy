@@ -43,7 +43,7 @@ const SpotSchema = new SimpleSchema({
     allowedValues: ['indoors', 'outdoors'],
     defaultValue: 'indoors',
   },
-  crowdedness: {
+  crowd: {
     type: String,
     allowedValues: ['Empty', 'Partially Crowded', 'Half Full', 'Crowded'],
     defaultValue: 'Empty',
