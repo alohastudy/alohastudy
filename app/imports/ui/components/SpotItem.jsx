@@ -1,13 +1,12 @@
 import React from 'react';
-import { Card, Image, Segment } from 'semantic-ui-react';
+import { Card, Image, Segment, Button } from 'semantic-ui-react';
+import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Profiles } from '/imports/api/profile/profile';
-import { Meteor } from 'meteor/meteor';
-
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -22,14 +21,14 @@ class SpotItem extends React.Component {
     }
     if (this.props.spot.owner === Meteor.user().username) {
       this.button = <Link to={`/edit/${this.props.spot._id}`}>
-        <button class="ui green basic button" size='large'>
+        <Button class="ui green basic button" size='large'>
           Edit
         </Button>
       </Link>;
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.button = <Link to={`/edit/${this.props.spot._id}`}>
-        <button class="ui green basic button" size='large'>
+        <Button class="ui green basic button" size='large'>
           Edit
         </Button>
       </Link>;
@@ -47,7 +46,8 @@ class SpotItem extends React.Component {
               &nbsp;<Rating rating={this.props.spot.rating}/>
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}, <Link to={`/profile/${username}`}>profile</Link></Card.Meta>
-            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets} location={this.props.spot.location} crowd={this.props.spot.crowd} />
+            <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
+                            location={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
             {this.button}
             <br/>
@@ -65,7 +65,7 @@ class SpotItem extends React.Component {
   }
 }
 
-/** Require a document to be passed to this component.*/
+/** Require a document to be passed to this component. */
 SpotItem.propTypes = {
   spot: PropTypes.object.isRequired,
 };
