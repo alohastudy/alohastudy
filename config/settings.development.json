@@ -40,7 +40,8 @@
       "description": "Sample benches taken from an album of benches around Tokyo",
       "rating": "5", "verified": true, "outlets": "None", "noisiness": "Quiet",
       "location": "outdoors",
-      "owner": "verified@foo.com"
+      "crowd": "Crowded",
+      "owner": "john@foo.com"
     },
 
     { "name": "Some cool benches again",
@@ -48,7 +49,8 @@
       "description": "Sample benches taken from an album of benches around Tokyo",
       "rating": "5", "verified": true, "outlets": "None", "noisiness": "Quiet",
       "location": "outdoors",
-      "owner": "admin@foo.com"
+      "crowd": "Crowded",
+      "owner": "john@foo.com"
     },
 
 
@@ -57,6 +59,7 @@
       "description": "Sample benches taken from an album of benches around Tokyo",
       "rating": "5", "verified": false, "outlets": "None", "noisiness": "Quiet",
       "location": "outdoors",
+      "crowd": "Crowded",
       "owner": "john@foo.com"
     },
 
@@ -66,6 +69,7 @@
       "description": "These are some sample chairs found online",
       "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
       "location": "indoors",
+      "crowd": "Crowded",
       "owner": "john@foo.com"
     },
 
@@ -75,6 +79,7 @@
       "description": "These are some sample chairs found online",
       "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
       "location": "indoors",
+      "crowd": "Crowded",
       "owner": "john@foo.com"
     },
 
@@ -84,6 +89,7 @@
       "description": "These are some sample chairs found online",
       "rating": "3", "verified": true, "outlets": "Many", "noisiness": "Noisy",
       "location": "indoors",
+      "crowd": "Crowded",
       "owner": "john@foo.com"
     }
   ]

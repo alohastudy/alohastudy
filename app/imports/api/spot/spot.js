@@ -43,6 +43,11 @@ const SpotSchema = new SimpleSchema({
     allowedValues: ['indoors', 'outdoors'],
     defaultValue: 'indoors',
   },
+  crowd: {
+    type: String,
+    allowedValues: ['Empty', 'Partially Crowded', 'Half Full', 'Crowded'],
+    defaultValue: 'Empty',
+  },
   owner: String,
 }, { tracker: Tracker });
 
