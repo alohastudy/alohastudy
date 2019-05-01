@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
-import { Spots } from '../../api/spot/spot';
 
 /* eslint-disable no-console */
 
@@ -15,12 +14,12 @@ function createUser(email, password, role) {
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }
-  if (role === 'verified') {
-    Roles.addUsersToRoles(userID, 'verified');
-  }
-  if (role === 'banned') {
-    Roles.addUsersToRoles(userID, 'banned');
-  }
+  // if (role === 'verified') {
+  //   Roles.addUsersToRoles(userID, 'verified');
+  // }
+  // if (role === 'banned') {
+  //   Roles.addUsersToRoles(userID, 'banned');
+  // }
 }
 
 /** When running app for first time, pass a settings file to set up a default user account. */
@@ -38,3 +37,5 @@ Meteor.publish('userList', function () {
     return Meteor.users.find({});
   }
 });
+
+// export { banUser };

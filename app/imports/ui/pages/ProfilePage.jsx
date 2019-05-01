@@ -18,15 +18,37 @@ class ProfilePage extends React.Component {
         ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
-  unbanUser(id) {
-    Roles.setUserRoles(id, '');
-    console.log('UNBANNED');
+  verify(id) {
+    // Meteor.users.update(id, { $set: { role: 'banned' } });
+    /* eslint-disable-next-line */
+    if (confirm("Are you sure you want to verify this user?")){
+      const ProfileID = Profiles.findOne({ owner: Meteor.users.findOne(id).username })._id;
+      Profiles.update(ProfileID, {
+        $set: { role: 'verified' },
+      });
+    }
     return true;
   }
 
-  banUser(id) {
-    Roles.setUserRoles(id, 'banned');
-    console.log('BANNED');
+  userify(id) {
+    /* eslint-disable-next-line */
+    if (confirm("Are you sure you want to remove this user's roles?\nNote: will not remove Admin role")){
+      const ProfileID = Profiles.findOne({ owner: Meteor.users.findOne(id).username })._id;
+      Profiles.update(ProfileID, {
+        $set: { role: 'user' },
+      });
+    }
+    return true;
+  }
+
+  ban(id) {
+    /* eslint-disable-next-line */
+    if (confirm("Are you sure you want to ban this user?")){
+      const ProfileID = Profiles.findOne({ owner: Meteor.users.findOne(id).username })._id;
+      Profiles.update(ProfileID, {
+        $set: { role: 'banned' },
+      });
+    }
     return true;
   }
 
@@ -38,6 +60,13 @@ class ProfilePage extends React.Component {
       button = <Link to={`/editProfile/${this.props.profiles._id}`}><Button>Edit Profile</Button></Link>;
     }
     let admin_ban = '';
+    let admin_verify = '';
+    Meteor.users.allow({
+      update: function (userId) {
+        // only admin can insert
+        const u = Meteor.users.findOne({ _id: userId });
+        return (u.isAdmin);
+      } });
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       Meteor.users.allow({
         update() {
@@ -47,10 +76,15 @@ class ProfilePage extends React.Component {
 
         fetch: ['owner'],
       });
-      if (Roles.userIsInRole(account._id, 'banned')) {
-        admin_ban = <Button floated='right' onClick={() => { this.unbanUser(account._id); }}>Unban</Button>;
+      if (Profiles.findOne({ owner: account.username }).role === 'banned') {
+        admin_ban = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unban</Button>;
       } else {
-        admin_ban = <Button floated='right' onClick={() => { this.banUser(account._id); }}>Ban</Button>;
+        admin_ban = <Button floated='right' onClick={() => { this.ban(account._id); }}>Ban</Button>;
+      }
+      if (Profiles.findOne({ owner: account.username }).role === 'verified') {
+        admin_verify = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unverify</Button>;
+      } else {
+        admin_verify = <Button floated='right' onClick={() => { this.verify(account._id); }}>Verify</Button>;
       }
     }
     return (
@@ -62,7 +96,7 @@ class ProfilePage extends React.Component {
           <br/>
           <Card fluid>
             <Card.Content>
-              {admin_ban}
+              {admin_ban}{admin_verify}
               <Card.Header>
                 <Image Style="height: 150px;" src={this.props.profiles.image} />
                 <br/>
@@ -110,7 +144,7 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Profile documents.
   const subscription = Meteor.subscribe('Profiles');
-  const subscription2 = Meteor.subscribe('SpotVerified');
+  const subscription2 = Meteor.subscribe('SpotAll');
   let subscription3a;
   let subscription3;
   if (Roles.userIsInRole(Meteor.userId(), 'admin')) {

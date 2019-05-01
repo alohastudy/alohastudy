@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Header, Container, Grid, Image, Segment, Card } from 'semantic-ui-react';
+import { Loader, Header, Container, Grid, Image, Segment, Card, Button } from 'semantic-ui-react';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Spots } from '/imports/api/spot/spot';
@@ -20,10 +20,21 @@ class SpotInfo extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
+    let verifyButton = '';
     if (this.props.doc.verified === true) {
       this.warning = '';
+      verifyButton = <Button floated='right' onClick={() => {
+        Spots.update(this.props.doc._id, {
+        $set: { verified: false },
+      });
+      }}>Unverify</Button>;
     } else {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
+      verifyButton = <Button floated='right' onClick={() => {
+        Spots.update(this.props.doc._id, {
+          $set: { verified: true },
+        });
+      }}>Verify</Button>;
     }
     const imageSmall = 'height: 175px;';
     const profile = Profiles.findOne({ owner: this.props.doc.owner });
@@ -32,6 +43,8 @@ class SpotInfo extends React.Component {
           <br/>
           <Segment attached>
             {this.warning}
+            {verifyButton}
+            {this.props.doc.verified}
             <Grid>
               <Grid.Row>
                 <Grid.Column width={12}>
