@@ -14,12 +14,12 @@ function createUser(email, password, role) {
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }
-  if (role === 'verified') {
-    Roles.addUsersToRoles(userID, 'verified');
-  }
-  if (role === 'banned') {
-    Roles.addUsersToRoles(userID, 'banned');
-  }
+  // if (role === 'verified') {
+  //   Roles.addUsersToRoles(userID, 'verified');
+  // }
+  // if (role === 'banned') {
+  //   Roles.addUsersToRoles(userID, 'banned');
+  // }
 }
 
 /** When running app for first time, pass a settings file to set up a default user account. */
@@ -31,3 +31,11 @@ if (Meteor.users.find().count() === 0) {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
 }
+
+Meteor.publish('userList', function () {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Meteor.users.find({});
+  }
+});
+
+// export { banUser };

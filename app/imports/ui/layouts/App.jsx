@@ -19,6 +19,7 @@ import Banned from '../pages/Banned';
 import SpotInfo from '../pages/SpotInfo';
 import ProfilePage from '../pages/ProfilePage';
 import EditProfile from '../pages/EditProfile';
+import { Profiles } from '/imports/api/profile/profile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -61,7 +62,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
         {...rest}
         render={(props) => {
           const isLogged = Meteor.userId() !== null;
-          const isBanned = Roles.userIsInRole(Meteor.userId(), 'banned');
+          // const isBanned = Roles.userIsInRole(Meteor.userId(), 'banned');
+          const isBanned = Profiles.findOne({ owner: Meteor.user().username }).role === 'banned';
           if (isBanned) {
             return <Redirect to={{ pathname: '/banned', state: { from: props.location } }}/>;
           }

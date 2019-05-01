@@ -9,6 +9,8 @@ import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
+import { Profiles } from '/imports/api/profile/profile';
 
 /** Renders the Page for adding a document. */
 class AddSpot extends React.Component {
@@ -23,7 +25,7 @@ class AddSpot extends React.Component {
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.verify = true;
     }
-    if (Roles.userIsInRole(Meteor.userId(), 'verified')) {
+    if (Profiles.findOne({ owner: Meteor.user().username }).role === 'verified') {
       this.verify = true;
     }
   }

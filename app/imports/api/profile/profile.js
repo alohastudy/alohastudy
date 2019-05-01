@@ -12,6 +12,7 @@ const ProfileSchema = new SimpleSchema({
   image: String,
   status: String,
   bio: String,
+  role: String,
   owner: String,
 }, { tracker: Tracker });
 
