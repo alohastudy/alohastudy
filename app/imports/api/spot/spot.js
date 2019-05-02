@@ -45,7 +45,7 @@ const SpotSchema = new SimpleSchema({
   },
   crowd: {
     type: String,
-    allowedValues: ['Empty', 'Partially Crowded', 'Half Full', 'Crowded'],
+    allowedValues: ['Empty', 'Partially Full', 'Half Full', 'Crowded'],
     defaultValue: 'Empty',
   },
   owner: String,

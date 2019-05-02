@@ -18,8 +18,8 @@ class EditSpot extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, _id  } = data;
-    Spots.update(_id, { $set: { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location } }, (error) => (error ?
+    const { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowd, _id  } = data;
+    Spots.update(_id, { $set: { name, image1, image2, image3, image4, image5, description, rating, verified, outlets, noisiness, location, crowd } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -47,6 +47,7 @@ class EditSpot extends React.Component {
                 <SelectField placeholder='hello' name='outlets'/>
                 <SelectField name='noisiness'/>
                 <SelectField name='location'/>
+                <SelectField name='crowd'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
