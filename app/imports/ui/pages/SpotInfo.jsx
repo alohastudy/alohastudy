@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Header, Container, Grid, Image, Segment, Card, Button } from 'semantic-ui-react';
+import { Loader, Header, Container, Grid, Image, Segment, Card, Button, Feed } from 'semantic-ui-react';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Spots } from '/imports/api/spot/spot';
@@ -7,7 +7,10 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '/imports/api/profile/profile';
+import { Comments } from '/imports/api/comment/comment';
 import { Link } from 'react-router-dom';
+import AddComment from '/imports/ui/components/AddComment';
+import Comment from '/imports/ui/components/Comment';
 
 
 /** Renders the Page for editing a single document. */
@@ -15,7 +18,7 @@ class SpotInfo extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready && this.props.ready2) ? this.renderPage() : <Loader active>Getting data</Loader>;
+    return (this.props.ready && this.props.ready2 && this.props.ready3) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -90,6 +93,16 @@ class SpotInfo extends React.Component {
               </Grid.Row>
             </Grid>
           </Segment>
+          <Segment>
+            <Grid>
+              <Grid.Row>
+                <AddComment owner={this.props.doc.owner} spotId={this.props.doc._id}/>
+                <Feed>
+                  {this.props.comments.map((comment, index) => <Comment key={index} comment={comment}/>)}
+                </Feed>
+              </Grid.Row>
+            </Grid>
+          </Segment>
         </Container>
     );
   }
@@ -100,6 +113,8 @@ SpotInfo.propTypes = {
   doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   ready2: PropTypes.bool.isRequired,
+  ready3: PropTypes.bool.isRequired,
+  comments: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -109,9 +124,13 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('SpotAll');
   const subscription2 = Meteor.subscribe('Profiles');
+  const subscription3 = Meteor.subscribe('Comments');
+  const docTemp = Spots.findOne(documentId)
   return {
-    doc: Spots.findOne(documentId),
+    doc: docTemp,
+    comments: Comments.find({ spot_id: docTemp._id }).fetch(),
     ready: subscription.ready(),
     ready2: subscription2.ready(),
+    ready3: subscription3.ready(),
   };
 })(SpotInfo);
