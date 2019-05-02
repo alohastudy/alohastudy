@@ -1,18 +1,29 @@
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { Feed, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Comment extends React.Component {
   render() {
     return (
-        <Feed.Event >
+        <Feed.Event>
+          <Feed.Label>
+            <Image src={this.props.comment.image}/>
+          </Feed.Label>
           <Feed.Content>
-            <Feed.Date content={this.props.comment.createdAt.toLocaleDateString('en-US')} />
+            <Feed.Summary>
+              <Feed.User>
+                  {this.props.comment.firstName}
+                  &nbsp;
+                  {this.props.comment.secondName}
+                  &nbsp;
+              </Feed.User>
+              <Feed.Date>{this.props.comment.createdAt.toLocaleDateString('en-US')}</Feed.Date>
+            </Feed.Summary>
             <Feed.Summary>
               {this.props.comment.comment}
-              {this.props.comment.firstName}
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
