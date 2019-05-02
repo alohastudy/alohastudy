@@ -3,6 +3,7 @@ import { Loader, Header, Container, Grid, Image, Segment, Card } from 'semantic-
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Spots } from '/imports/api/spot/spot';
+import { Notes } from '/imports/api/note/note';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -75,6 +76,11 @@ class SpotInfo extends React.Component {
               </Grid.Row>
             </Grid>
           </Segment>
+          <Card.Content extra>
+            <Feed>
+              {this.props.notes.map((note, index) => <Note key={index} notes={this.props.notes.filter(note => (note.contactId === contact._id))}/>)}
+            </Feed>
+          </Card.Content>
         </Container>
     );
   }
@@ -85,6 +91,7 @@ SpotInfo.propTypes = {
   doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   ready2: PropTypes.bool.isRequired,
+  notes: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -98,5 +105,6 @@ export default withTracker(({ match }) => {
     doc: Spots.findOne(documentId),
     ready: subscription.ready(),
     ready2: subscription2.ready(),
+    notes: Notes.find({}).fetch(),
   };
 })(SpotInfo);

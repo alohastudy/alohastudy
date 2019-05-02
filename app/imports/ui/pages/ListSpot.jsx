@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Header, Loader } from 'semantic-ui-react';
 import { Spots } from '/imports/api/spot/spot';
+import { Notes } from '/imports/api/note/note';
 import SpotItem from '/imports/ui/components/SpotItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -20,7 +21,7 @@ class ListSpot extends React.Component {
         <Container>
           <Header as="h2" textAlign="center" inverted>The Spots</Header>
           <Card.Group>
-          {this.props.spots.map((spot) => <SpotItem key={spot._id} spot={spot} />)}
+          {this.props.spots.map((spot) => <SpotItem key={spot._id} spot={spot}/>)}
           </Card.Group>
         </Container>
     );
@@ -31,6 +32,7 @@ class ListSpot extends React.Component {
 ListSpot.propTypes = {
   spots: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
+  notes: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -40,5 +42,7 @@ export default withTracker(() => {
   return {
     spots: Spots.find({}).fetch(),
     ready: subscription.ready(),
+    notes: Notes.find({}).fetch(),
+
   };
 })(ListSpot);
