@@ -26,11 +26,11 @@ class SpotInfo extends React.Component {
     let verifyButton = '';
     if (this.props.doc.verified === true) {
       this.warning = '';
-      verifyButton = <Button floated='right' onClick={() => {
+      verifyButton = <button class="ui green basic button" floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
         $set: { verified: false },
       });
-      }}>Unverify</Button>;
+      }}>Unverify</button>;
     } else {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
       verifyButton = <Button floated='right' onClick={() => {
