@@ -25,7 +25,7 @@ class NavBar extends React.Component {
           @import url('https://fonts.googleapis.com/css?family=Righteous');
         </style>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
-          <Image size='medium' src='/images/logo10.png'/>
+          <Image size='medium' src='/images/logo12.png'/>
         </Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/addSpots" key='addSpots' style={itemStyle}>Add Spots</Menu.Item>,
