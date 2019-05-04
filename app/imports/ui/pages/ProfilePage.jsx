@@ -89,8 +89,8 @@ class ProfilePage extends React.Component {
     }
     return (
         <Container>
-          <Header as="h2" textAlign="center">
-            {this.props.profiles.firstName}
+          <Header as="h2" textAlign="center" inverted>
+            {this.props.profiles.firstName}&nbsp;
           {this.props.profiles.secondName}&#39;s Profile
           </Header>
           <br/>
@@ -112,8 +112,9 @@ class ProfilePage extends React.Component {
             </Card.Content>
           </Card>
           <Container>
-            <Header as="h3" textAlign="center">
-              {this.props.profiles.firstName}
+            <Header as="h3" textAlign="center" inverted>
+              <br/>
+              {this.props.profiles.firstName}&nbsp;
             {this.props.profiles.secondName}&#39;s Spots
             </Header>
             <Card.Group>

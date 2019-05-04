@@ -18,7 +18,7 @@ class ListSpotAdmin extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">The Spots</Header>
+          <Header as="h2" textAlign="center" inverted>The Spots</Header>
           <Card.Group>
           {this.props.spots.map((spot) => <SpotItem key={spot._id} spot={spot} />)}
           </Card.Group>
