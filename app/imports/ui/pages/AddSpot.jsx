@@ -69,7 +69,7 @@ class AddSpot extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
-                <HiddenField name='rating' value={3}/>
+                <HiddenField name='rating' value={0}/>
                 <HiddenField name='verified' value={this.verify}/>
               </Segment>
             </AutoForm>

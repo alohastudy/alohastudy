@@ -1,12 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Label, Header, Loader, Button, Input, Checkbox } from 'semantic-ui-react';
-import { Spots } from '/imports/api/spot/spot';
-import SpotItem from '/imports/ui/components/SpotItem';
 import ListSpotsComponent from '/imports/ui/components/ListSpotsComponent';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListSpot extends React.Component {
@@ -31,7 +28,7 @@ class ListSpot extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+    return (this.props.ready && this.props.ready2) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   handleMessage(e) {
@@ -145,6 +142,7 @@ ListSpot.propTypes = {
   // query: PropTypes.string.isRequired,
   // spots: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
+  ready2: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -154,6 +152,7 @@ export default withTracker(() => {
   // console.log("params._id is "+match.params._id);
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('SpotVerified');
+  const subscription2 = Meteor.subscribe('Comments');
   // let interspots = Spots.find({}).fetch();
   // if (Meteor.isServer) {
   //   Spots._ensureIndex({
@@ -174,6 +173,7 @@ export default withTracker(() => {
   return {
     // spots: interspots,
     ready: subscription.ready(),
+    ready2: subscription2.ready(),
     // query: query,
   };
 })(ListSpot);
