@@ -16,12 +16,12 @@ class SpotAttributes extends React.Component {
           {this.props.outlets === 'Few' ? ('🔌 Few Outlets') : ('')}
           {this.props.outlets === 'Many' ? ('🔌 Many Outlets') : ('')}
           &nbsp;
-          {this.props.location === 'Outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
+          {this.props.spotLocation === 'outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
           &nbsp;
-          {this.props.crowd === 'Empty' ? ('🔋 Empty') : ('')}
-          {this.props.crowd === 'Partially Full' ? ('🔌 Partially Full') : ('')}
-          {this.props.crowd === 'Half Full' ? ('  Half Full') : ('')}
-          {this.props.crowd === 'Crowded' ? ('🔌 Crowded') : ('')}
+          {this.props.crowd === 'Empty' ? ('💨 Empty') : ('')}
+          {this.props.crowd === 'Partially Crowded' ? ('👩 Partially Full') : ('')}
+          {this.props.crowd === 'Half Full' ? ('👨‍👦  Half Full') : ('')}
+          {this.props.crowd === 'Crowded' ? ('👨‍👩‍👦‍👦 Crowded') : ('')}
         </div>
     );
   }
@@ -31,7 +31,7 @@ class SpotAttributes extends React.Component {
 SpotAttributes.propTypes = {
   noisiness: PropTypes.string.isRequired,
   outlets: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  spotLocation: PropTypes.string.isRequired,
   crowd: PropTypes.string.isRequired,
 };
 

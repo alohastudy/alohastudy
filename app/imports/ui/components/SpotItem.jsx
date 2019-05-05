@@ -47,7 +47,7 @@ class SpotItem extends React.Component {
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}, <Link to={`/profile/${username}`}>profile</Link></Card.Meta>
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
-                            location={this.props.spot.location} crowd={this.props.spot.crowd} />
+                            spotLocation={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
             {this.button}
             <br/>
@@ -58,7 +58,7 @@ class SpotItem extends React.Component {
               <Image Style="height: 150px;" src={this.props.spot.image4}/>
               <Image Style="height: 150px;" src={this.props.spot.image5}/>
             </Image.Group>
-            <Card.Description>{this.props.spot.description}</Card.Description>
+            <Card.Description><p>{this.props.spot.description}</p></Card.Description>
           </Card.Content>
         </Card>
     );

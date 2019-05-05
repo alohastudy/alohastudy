@@ -61,13 +61,13 @@ class ProfilePage extends React.Component {
     }
     let admin_ban = '';
     let admin_verify = '';
-    Meteor.users.allow({
+    Meteor.users.allow({ // this statement is likely useless
       update: function (userId) {
         // only admin can insert
         const u = Meteor.users.findOne({ _id: userId });
         return (u.isAdmin);
       } });
-    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
+    if (Roles.userIsInRole(Meteor.userId(), 'admin')) { // this if statement is likely useless
       Meteor.users.allow({
         update() {
         // Can only change your own documents.

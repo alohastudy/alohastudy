@@ -37,7 +37,7 @@ export default class Signup extends React.Component {
     console.log('inserting profile');
     Profiles.insert({ firstName: 'Default', secondName: 'User',
       image: 'http://atlas-content-cdn.pixelsquid.com/stock-images/neutral-lego-man-arms-down-y1vGAq3-600.jpg',
-      status: 'student', bio: 'Empty', owner: email });
+      status: 'student', bio: 'Empty', role: 'user', owner: email });
     console.log('finish inserting profile');
     Accounts.createUser({ email, username: email, password }, (err) => {
       if (err) {
