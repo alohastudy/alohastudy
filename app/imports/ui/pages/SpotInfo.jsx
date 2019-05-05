@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Header, Container, Grid, Image, Segment, Card, Button, Feed } from 'semantic-ui-react';
+import { Loader, Header, Container, Grid, Image, Segment, Card, Feed } from 'semantic-ui-react';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Spots } from '/imports/api/spot/spot';
@@ -46,19 +46,19 @@ class SpotInfo extends React.Component {
         Spots.update(this.props.doc._id, {
           $set: { verified: false },
         });
-      }}>Unverify</Button>;
+      }}>Unverify</button>;
     } else {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
-      verifyButton = <Button floated='right' onClick={() => {
+      verifyButton = <button class="ui green basic button" floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
           $set: { verified: true },
         });
-      }}>Verify</Button>;
+      }}>Verify</button>;
     }
     if (Meteor.user().username === this.props.doc.owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      deleteButton = <Button floated='right' onClick={() => {
+      deleteButton = <button class="ui green basic button" floated='right' onClick={() => {
         this.deleter();
-      }}>Delete</Button>;
+      }}>Delete</button>;
     }
     const imageSmall = 'height: 175px;';
     const profile = Profiles.findOne({ owner: this.props.doc.owner });

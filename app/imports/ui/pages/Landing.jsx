@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Container, Header, Segment, Image, Divider, Button, Icon } from 'semantic-ui-react';
+import { Grid, Container, Header, Segment, Image, Divider, Button, Icon, Card, Feed } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
@@ -69,6 +69,52 @@ class Landing extends React.Component {
                 </Button>
               </Link>
             </Header>
+            <Grid container stackable inverted verticalAlign='middle'>
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header
+                      as='h1'
+                      content='Aloha Study'
+                      inverted
+                      textAlign='center'
+                      padded container centered
+                      style={{
+                        fontSize: '80px',
+                        marginTop: '100px',
+                        marginBottom: '20px',
+                        fontFamily: 'Righteous, cursive',
+                      }}
+                  />
+                  <Header
+                      as='h1'
+                      content='University of Hawaii at Manoa'
+                      inverted
+                      textAlign='center'
+                      padded container centered
+                      style={{
+                        fontSize: '60px',
+                        marginTop: '30px',
+                        marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                      }}
+                  />
+                  <Header
+                    as='h2'
+                    content='Study Spots Within Reach'
+                    inverted
+                    textAlign='center'
+                    padded container centered
+                    style={{
+                      fontSize: '40px',
+                      marginTop: '30px',
+                      marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                    }}
+                />
+                </Grid.Column>
+                <Grid.Column floated='right' width={6}>
+                  <Image bordered rounded size='large' src='/images/uh.jpg'/>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Container>
 
           <Segment borderless style={{ padding: '4em 0em' }} vertical>
@@ -98,30 +144,6 @@ class Landing extends React.Component {
             </Grid>
           </Segment>
 
-          <Segment borderless style={{ padding: '4em 0em' }} vertical>
-            <Grid borderless container stackable inverted verticalAlign='middle'>
-              <Grid.Row>
-                <Grid.Column floated='left' width={6}>
-                  <Image bordered rounded size='large' src='/images/best.jpg'/>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive' }}>
-                    Our Guarantee!
-                  </Header>
-                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive' }}>
-                    Only verified and admin users can post listings. That means that you<span>&#39;</span>ll never
-                    have to worry about inaccurate information!
-                  </p>
-                  <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive' }}>
-                    Symbols of the Website
-                  </Header>
-                  <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive' }}>
-                    Each listing has an icon that helps you quickly see the status of each listing.
-                  </p>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Segment>
 
           <Segment style={{ padding: '4em 0em' }} vertical>
             <Container text>
@@ -166,11 +188,6 @@ class Landing extends React.Component {
               </Link>
             </Container>
           </Segment>
-
-          <Image fluid centered size='large' src='/images/logo10.png' style={{
-            marginTop: '30px',
-            marginBottom: '200px',
-          }}/>
 
           <Segment style={{ padding: '0em' }} vertical>
             <Grid inverted celled='internally' columns='equal' stackable>
