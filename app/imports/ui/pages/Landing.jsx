@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Card, List, Container, Header, Segment, Image, Divider, Button } from 'semantic-ui-react';
+import { Grid, Container, Header, Segment, Image, Divider, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
@@ -7,56 +7,71 @@ class Landing extends React.Component {
   render() {
     return (
 
-        <Container>
+        <Container className="ui landing top">
 
           <style>
             @import url('https://fonts.googleapis.com/css?family=Righteous');{/*eslint-disable-line*/}
           </style>
 
-          <Header
-              as='h1'
-              content='Aloha Study'
-              inverted
-              textAlign='center'
-              padded container centered
-              style={{
-                fontSize: '80px',
-                marginTop: '100px',
-                marginBottom: '20px',
-                fontFamily: 'Righteous, cursive'
-              }}
-          />
-          <Header
-              as='h1'
-              content='University of Hawaii at Manoa'
-              inverted
-              textAlign='center'
-              padded container centered
-              style={{
-                fontSize: '60px',
-                marginTop: '30px',
-                marginBottom: '20px', fontFamily: 'Righteous, cursive'
-              }}
-          />
-          <Header
-              as='h2'
-              content='Study Spots Within Reach'
-              inverted
-              textAlign='center'
-              padded container centered
-              style={{
-                fontSize: '40px',
-                marginTop: '30px',
-                marginBottom: '170px', fontFamily: 'Righteous, cursive'
-              }}
-          />
+          <Container >
+            <Header
+                as='h1'
+                content='Aloha Study'
+                inverted
+                textAlign='center'
+                padded container centered
+                style={{
+                  fontSize: '80px',
+                  marginTop: '100px',
+                  marginBottom: '20px',
+                  fontFamily: 'Righteous, cursive',
+                }}
+            />
+            <Header
+                as='h1'
+                content='University of Hawaii at Manoa'
+                inverted
+                textAlign='center'
+                padded container centered
+                style={{
+                  fontSize: '60px',
+                  marginTop: '30px',
+                  marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                }}
+            />
+            <Header
+                as='h2'
+                content='Study Spots Within Reach'
+                inverted
+                textAlign='center'
+                padded container centered
+                style={{
+                  fontSize: '40px',
+                  marginTop: '30px',
+                  marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                }}
+            />
+            <Header
+                as='h2'
+                content='Study Spots Within Reach'
+                inverted
+                textAlign='center'
+                padded container centered
+                style={{
+                  marginTop: '30px',
+                  marginBottom: '140px', fontFamily: 'Righteous, cursive',
+                }}
+            >
+              <Link to="/signup">
+                <Button as='a' size='huge'>
+                  Start Studying!
+                  <Icon name='right arrow'/>
+                </Button>
+              </Link>
+            </Header>
+          </Container>
 
-          <Image fluid centered size='large' src='/images/logo10.png' style={{
-            marginTop: '30px',
-            marginBottom: '200px'
-          }}/>
-
-          <Segment borderless style={{ padding: '8em 0em' }} vertical>
+          <Segment borderless style={{ padding: '4em 0em' }} vertical>
             <Grid container stackable inverted verticalAlign='middle'>
               <Grid.Row>
                 <Grid.Column width={8}>
@@ -83,7 +98,7 @@ class Landing extends React.Component {
             </Grid>
           </Segment>
 
-          <Segment borderless style={{ padding: '8em 0em' }} vertical>
+          <Segment borderless style={{ padding: '4em 0em' }} vertical>
             <Grid borderless container stackable inverted verticalAlign='middle'>
               <Grid.Row>
                 <Grid.Column floated='left' width={6}>
@@ -94,8 +109,8 @@ class Landing extends React.Component {
                     Our Guarantee!
                   </Header>
                   <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive' }}>
-                    Only verified and admin users can post listings. That means that you'll never have to worry about
-                    inaccurate information!
+                    Only verified and admin users can post listings. That means that you<span>&#39;</span>ll never
+                    have to worry about inaccurate information!
                   </p>
                   <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive' }}>
                     Symbols of the Website
@@ -108,7 +123,7 @@ class Landing extends React.Component {
             </Grid>
           </Segment>
 
-          <Segment style={{ padding: '8em 0em' }} vertical>
+          <Segment style={{ padding: '4em 0em' }} vertical>
             <Container text>
               <Header inverted as='h3' style={{ fontSize: '2em', fontFamily: 'Righteous, cursive' }}>
                 Add Spots
@@ -131,7 +146,7 @@ class Landing extends React.Component {
                     margin: '3em 0em',
                     textTransform: 'uppercase',
                     color: 'white',
-                    fontFamily: 'Righteous, cursive'
+                    fontFamily: 'Righteous, cursive',
                   }}
               >
                 <div>How to use the Site</div>
@@ -142,7 +157,7 @@ class Landing extends React.Component {
               </Header>
               <p style={{ fontSize: '1.33em', color: 'white', fontFamily: 'Righteous, cursive' }}>
                 This tab allows all users to view the listing of verified spots. Within this, users can view all
-                verified spots with the spot's name and attributes describing its condition.
+                verified spots with the spot<span>&#39;</span>s name and attributes describing its condition.
               </p>
               <Link to={'/listSpots/'}>
                 <Button as='a' size='large'>
@@ -151,6 +166,11 @@ class Landing extends React.Component {
               </Link>
             </Container>
           </Segment>
+
+          <Image fluid centered size='large' src='/images/logo10.png' style={{
+            marginTop: '30px',
+            marginBottom: '200px',
+          }}/>
 
           <Segment style={{ padding: '0em' }} vertical>
             <Grid inverted celled='internally' columns='equal' stackable>
