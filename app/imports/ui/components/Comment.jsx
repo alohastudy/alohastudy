@@ -2,6 +2,7 @@ import React from 'react';
 import { Feed, Image, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Profiles } from '/imports/api/profile/profile';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Comment extends React.Component {
@@ -9,17 +10,18 @@ class Comment extends React.Component {
   render() {
     const today = new Date();
     const time = `${today.getHours()}:${today.getMinutes()}`;
+    const profile = Profiles.findOne({ owner: this.props.comment.owner });
     return (
         <Feed.Event>
           <Feed.Label>
-            <Image src={this.props.comment.image}/>
+            <Image src={profile.image}/>
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
               <Feed.User>
-                  {this.props.comment.firstName}
+                  {profile.firstName}
                   &nbsp;
-                  {this.props.comment.secondName}
+                  {profile.secondName}
                   &nbsp;
               </Feed.User>
               <Feed.Date>{this.props.comment.createdAt.toLocaleDateString('en-US')}</Feed.Date>

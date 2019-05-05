@@ -42,7 +42,7 @@ class SpotInfo extends React.Component {
     let deleteButton = '';
     if (this.props.doc.verified === true) {
       this.warning = '';
-      verifyButton = <button class="ui green basic button" floated='right' onClick={() => {
+      verifyButton = <Button class="ui green basic button" floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
           $set: { verified: false },
         });

@@ -9,6 +9,7 @@ import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Profiles } from '/imports/api/profile/profile';
 import PropTypes from 'prop-types';
+import { Spots } from '/imports/api/spot/spot';
 
 /** Renders the Page for adding a document. */
 class AddComment extends React.Component {
@@ -37,6 +38,24 @@ class AddComment extends React.Component {
   submit(data) {
     const { comment, rating, owner, firstName, secondName, image, spot_id, createdAt } = data;
     Comments.insert({ comment, rating, owner, firstName, secondName, image, spot_id, createdAt }, this.insertCallback);
+    this.updateSpotRating();
+  }
+
+  updateSpotRating() {
+    let rating = 0;
+    function getSum(total) {
+      console.log(total);
+      rating += total.rating;
+      return true;
+    }
+    const comments = Comments.find({ spot_id: this.props.spotId }).fetch();
+    comments.forEach(getSum);
+    if (rating !== 0) {
+      rating /= comments.length;
+    }
+    const _id = this.props.spotId;
+    Spots.update(_id, { $set: { rating: rating } });
+
   }
 
   handleRate = (e, { rating }) => {
@@ -58,9 +77,9 @@ class AddComment extends React.Component {
             <SubmitField value='Submit'/>
             <ErrorsField/>
             <HiddenField name='owner' value={this.props.owner}/>
-            <HiddenField name='firstName' value={userProfile.firstName}/>
-            <HiddenField name='secondName' value={userProfile.secondName}/>
-            <HiddenField name='image' value={userProfile.image}/>
+            {/*<HiddenField name='firstName' value={userProfile.firstName}/>*/}
+            {/*<HiddenField name='secondName' value={userProfile.secondName}/>*/}
+            {/*<HiddenField name='image' value={userProfile.image}/>*/}
             <HiddenField name='spot_id' value={this.props.spotId}/>
             <HiddenField name='createdAt' value={new Date()}/>
             <HiddenField name='rating' value={ this.rating }/>

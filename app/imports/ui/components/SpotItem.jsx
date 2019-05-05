@@ -19,15 +19,16 @@ class SpotItem extends React.Component {
       this.color = 'red';
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
+    this.editbutton = '';
     if (this.props.spot.owner === Meteor.user().username) {
-      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
         <button class="ui green basic button" size='large'>
           Edit
         </button>
       </Link>;
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
         <button class="ui green basic button" size='large'>
           Edit
         </button>
@@ -42,8 +43,8 @@ class SpotItem extends React.Component {
         <Card color={this.color} fluid>
           <Card.Content>
             <Card.Header>
-              {this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}</Link>
-              &nbsp;<Rating rating={this.props.spot.rating}/>
+              {this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}&nbsp;<Rating rating={this.props.spot.rating}/></Link>
+
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}, <Link to={`/profile/${username}`}>profile</Link></Card.Meta>
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}

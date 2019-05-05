@@ -1,11 +1,8 @@
 import React from 'react';
-import { Card, Image, Segment, Button, Container } from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
-import { Meteor } from 'meteor/meteor';
+import { Card } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import SpotItem from '/imports/ui/components/SpotItem';
-import { withRouter, Link } from 'react-router-dom';
-import { Profiles } from '/imports/api/profile/profile';
+import { withRouter } from 'react-router-dom';
 import { Spots } from '/imports/api/spot/spot';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -52,18 +49,24 @@ class ListSpotsComponent extends React.Component {
     if (this.props.crowd3) {
       crowd.push('Crowded');
     }
-    console.log(location);
-    console.log(noisiness);
-    console.log(outlets);
-    console.log(crowd);
-    let interspots = Spots.find({
-      location: { $in: location },
-      noisiness: { $in: noisiness },
-      outlets: { $in: outlets },
-      crowd: { $in: crowd },
-    }).fetch();
+    let interspots;
     if (this.props.query !== 'undefined' && this.props.query !== undefined && this.props.query !== '') {
-      interspots = Spots.find({ name: this.props.query }).fetch();
+      interspots = Spots.find({
+        location: { $in: location },
+        noisiness: { $in: noisiness },
+        outlets: { $in: outlets },
+        crowd: { $in: crowd },
+        verified: true,
+        name: this.props.query,
+      }).fetch();
+    } else {
+      interspots = Spots.find({
+        location: { $in: location },
+        noisiness: { $in: noisiness },
+        outlets: { $in: outlets },
+        crowd: { $in: crowd },
+        verified: true,
+      }).fetch();
     }
     return (
         <Card.Group>
