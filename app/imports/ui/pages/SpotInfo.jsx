@@ -8,25 +8,41 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Profiles } from '/imports/api/profile/profile';
 import { Link } from 'react-router-dom';
-
+import { Redirect } from 'react-router';
+import { Roles } from 'meteor/alanning:roles';
 
 /** Renders the Page for editing a single document. */
 class SpotInfo extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.redirect = '';
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready && this.props.ready2) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
+  deleter() {
+    /* eslint-disable-next-line */
+    if (confirm("Are you sure you want to delete this spot?")) {
+      Spots.remove(this.props.doc._id);
+      this.redirect = <Redirect to={'/ListSpots/'}/>;
+      this.forceUpdate();
+    }
+  }
+
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
     let verifyButton = '';
+    let deleteButton = '';
     if (this.props.doc.verified === true) {
       this.warning = '';
       verifyButton = <Button floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
-        $set: { verified: false },
-      });
+          $set: { verified: false },
+        });
       }}>Unverify</Button>;
     } else {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
@@ -35,6 +51,11 @@ class SpotInfo extends React.Component {
           $set: { verified: true },
         });
       }}>Verify</Button>;
+    }
+    if (Meteor.user().username === this.props.doc.owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      deleteButton = <Button floated='right' onClick={() => {
+        this.deleter();
+      }}>Delete</Button>;
     }
     const imageSmall = 'height: 175px;';
     const profile = Profiles.findOne({ owner: this.props.doc.owner });
@@ -45,12 +66,15 @@ class SpotInfo extends React.Component {
             {this.warning}
             {verifyButton}
             {this.props.doc.verified}
+            {deleteButton}
+            {this.redirect}
             <Grid>
               <Grid.Row>
                 <Grid.Column width={12}>
                   <Header size='huge'>{this.props.doc.name}<Rating rating={this.props.doc.rating}/></Header>
                   <div Style="margin-top: 40px;">
-                    <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets} location={this.props.doc.location} crowd={this.props.doc.crowd}/>
+                    <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets}
+                                    location={this.props.doc.location} crowd={this.props.doc.crowd}/>
                   </div>
                 </Grid.Column>
                 <Grid.Column width={4} floated='right'>

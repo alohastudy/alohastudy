@@ -20,14 +20,14 @@ class SpotItem extends React.Component {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
     if (this.props.spot.owner === Meteor.user().username) {
-      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
         <Button class="ui green basic button" size='large'>
           Edit
         </Button>
       </Link>;
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
         <Button class="ui green basic button" size='large'>
           Edit
         </Button>
@@ -49,7 +49,7 @@ class SpotItem extends React.Component {
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
                             location={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
-            {this.button}
+            {this.editbutton}
             <br/>
             <Image.Group fluid floated='left'>
               <Image Style="height: 150px;" src={this.props.spot.image1}/>
