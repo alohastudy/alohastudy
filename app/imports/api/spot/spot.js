@@ -53,6 +53,7 @@ const SpotSchema = new SimpleSchema({
 
 /** Attach this schema to the collection. */
 Spots.attachSchema(SpotSchema);
+// Spots.createIndex({ name: 'text' });
 
 /** Make the collection and schema available to other code. */
 export { Spots, SpotSchema };

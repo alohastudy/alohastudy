@@ -6,6 +6,9 @@ import { Spots } from '../../api/spot/spot.js';
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Spots.insert(data);
+  // Spots.findOne({ name: data.name }).createIndex(
+  //     { nameIndex: data.name },
+  // );
 }
 
 /** Initialize the collection if empty. */
