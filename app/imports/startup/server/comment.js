@@ -23,5 +23,3 @@ Meteor.publish('Comments', function publish() {
   return Comments.find();
   return this.ready();
 });
-
-

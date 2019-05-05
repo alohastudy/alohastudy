@@ -95,12 +95,12 @@ class SpotInfo extends React.Component {
           </Segment>
           <Segment>
             <Grid>
-              <Grid.Row>
+              <Grid.Column>
                 <AddComment owner={Meteor.user().username} spotId={this.props.doc._id}/>
                 <Feed>
                   {this.props.comments.map((comment, index) => <Comment key={index} comment={comment}/>)}
                 </Feed>
-              </Grid.Row>
+              </Grid.Column>
             </Grid>
           </Segment>
         </Container>

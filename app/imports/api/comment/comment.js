@@ -8,6 +8,7 @@ const Comments = new Mongo.Collection('Comments');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const CommentSchema = new SimpleSchema({
   comment: String,
+  rating: Number,
   spot_id: String,
   firstName: String,
   secondName: String,
