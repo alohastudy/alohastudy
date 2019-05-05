@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Segment, Button } from 'semantic-ui-react';
+import { Card, Image, Segment } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
@@ -20,17 +20,17 @@ class SpotItem extends React.Component {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
     if (this.props.spot.owner === Meteor.user().username) {
-      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
-        <Button class="ui green basic button" size='large'>
+      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+        <button class="ui green basic button" size='large'>
           Edit
-        </Button>
+        </button>
       </Link>;
     }
     if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
-        <Button class="ui green basic button" size='large'>
+      this.button = <Link to={`/edit/${this.props.spot._id}`}>
+        <button class="ui green basic button" size='large'>
           Edit
-        </Button>
+        </button>
       </Link>;
     }
   }
