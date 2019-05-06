@@ -56,7 +56,7 @@ class ListSpot extends React.Component {
 
     return (
         <Container>
-          <Input onChange={this.handleMessage.bind(this)} placeholder='message'/>
+          <Input onChange={this.handleMessage.bind(this)} placeholder='Please type exact name'/>
             <Button onClick={() => { this.handleSearch(); }}>Search</Button>
           <Label><Label>AutoSearch</Label>&nbsp;<Checkbox defaultChecked onClick={() => {
             this.autoSearch = !this.autoSearch;
