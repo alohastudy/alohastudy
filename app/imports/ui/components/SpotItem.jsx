@@ -75,7 +75,7 @@ class SpotItem extends React.Component {
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
                             spotLocation={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
-            <Label size="big">How Crowded is it right now?</Label>
+            <Label size="large">How Crowded is it right now?</Label>
             <Dropdown selection placeholder='How Crowded is it right now?' options={options} defaultValue={this.props.spot.crowd} onChange={this.handleCrowd}/>
             <br/><br/>
             <Image.Group fluid floated='left'>
