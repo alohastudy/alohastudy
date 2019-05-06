@@ -24,7 +24,9 @@ class SpotInfo extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready && this.props.ready2 && this.props.ready3) ? this.renderPage() : <Loader active>Getting data</Loader>;
+    return (this.props.ready && this.props.ready2 && this.props.ready3) ? this.renderPage() : <Loader active>
+      Getting data
+    </Loader>;
   }
 
   deleter() {
@@ -76,7 +78,8 @@ class SpotInfo extends React.Component {
                 <Grid.Column width={12}>
                   <Header size='huge'>{this.props.doc.name}<Rating rating={this.props.doc.rating}/></Header>
                   <div Style="margin-top: 40px;">
-                    <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets} spotLocation={this.props.doc.location} crowd={this.props.doc.crowd}/>
+                    <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets}
+                                    spotLocation={this.props.doc.location} crowd={this.props.doc.crowd}/>
                   </div>
                 </Grid.Column>
                 <Grid.Column width={4} floated='right'>
@@ -148,7 +151,7 @@ export default withTracker(({ match }) => {
   const subscription = Meteor.subscribe('SpotAll');
   const subscription2 = Meteor.subscribe('Profiles');
   const subscription3 = Meteor.subscribe('Comments');
-  const docTemp = Spots.findOne(documentId)
+  const docTemp = Spots.findOne(documentId);
   return {
     doc: docTemp,
     comments: Comments.find({ spot_id: docTemp._id }).fetch(),
