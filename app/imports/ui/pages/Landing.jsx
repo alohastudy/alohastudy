@@ -13,11 +13,11 @@ class Landing extends React.Component {
             @import url('https://fonts.googleapis.com/css?family=Righteous');{/*eslint-disable-line*/}
           </style>
 
-          <Container >
+          <Container>
 
             <Grid container stackable inverted verticalAlign='middle'>
               <Grid.Row>
-                <Grid.Column width={8}>
+                <Grid.Column width={10}>
                   <Header
                       as='h1'
                       content='Aloha Study'
@@ -44,20 +44,40 @@ class Landing extends React.Component {
                       }}
                   />
                   <Header
-                    as='h2'
-                    content='Study Spots Within Reach'
-                    inverted
-                    textAlign='center'
-                    padded container centered
-                    style={{
-                      fontSize: '30px',
-                      marginTop: '30px',
-                      marginBottom: '20px', fontFamily: 'Righteous, cursive',
-                    }}
-                />
+                      as='h2'
+                      content='Study Spots Within Reach'
+                      inverted
+                      textAlign='center'
+                      padded container centered
+                      style={{
+                        fontSize: '30px',
+                        marginTop: '30px',
+                        marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                      }}
+                  />
+                  <Header
+                      as='h2'
+                      content='Study Spots Within Reach'
+                      inverted
+                      textAlign='center'
+                      padded container centered
+                      style={{
+                        fontSize: '30px',
+                        marginTop: '30px',
+                        marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                      }}
+                  >
+                    <Link to="/signup" textAlign='center'>
+                      <Button as='a' size='huge'>
+                        Start Studying!
+                        <Icon name='right arrow'/>
+                      </Button>
+                    </Link>
+                  </Header>
+
 
                 </Grid.Column>
-                <Grid.Column floated='right' width={6}>
+                <Grid.Column floated='right' width={6} style={{ marginTop: '100px' }}>
                   <Card>
                     <Card.Content>
                       <Card.Header>Recent Activity</Card.Header>
@@ -65,9 +85,9 @@ class Landing extends React.Component {
                     <Card.Content>
                       <Feed>
                         <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/jenny.jpg' />
+                          <Feed.Label image='/images/avatar/small/jenny.jpg'/>
                           <Feed.Content>
-                            <Feed.Date content='1 day ago' />
+                            <Feed.Date content='1 day ago'/>
                             <Feed.Summary>
                               You added <a>Jenny Hess</a> to your <a>coworker</a> group.
                             </Feed.Summary>
@@ -75,9 +95,9 @@ class Landing extends React.Component {
                         </Feed.Event>
 
                         <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/molly.png' />
+                          <Feed.Label image='/images/avatar/small/molly.png'/>
                           <Feed.Content>
-                            <Feed.Date content='3 days ago' />
+                            <Feed.Date content='3 days ago'/>
                             <Feed.Summary>
                               You added <a>Molly Malone</a> as a friend.
                             </Feed.Summary>
@@ -85,9 +105,9 @@ class Landing extends React.Component {
                         </Feed.Event>
 
                         <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/elliot.jpg' />
+                          <Feed.Label image='/images/avatar/small/elliot.jpg'/>
                           <Feed.Content>
-                            <Feed.Date content='4 days ago' />
+                            <Feed.Date content='4 days ago'/>
                             <Feed.Summary>
                               You added <a>Elliot Baker</a> to your <a>musicians</a> group.
                             </Feed.Summary>
@@ -101,16 +121,6 @@ class Landing extends React.Component {
               </Grid.Row>
             </Grid>
           </Container>
-
-        <Container centered>
-          <Link to="/signup">
-            <Button as='a' size='huge' >
-              Start Studying!
-              <Icon name='right arrow'/>
-            </Button>
-          </Link>
-        </Container>
-
 
           <Segment borderless style={{ padding: '4em 0em' }} vertical>
             <Grid container stackable inverted verticalAlign='middle'>
