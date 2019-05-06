@@ -14,61 +14,7 @@ class Landing extends React.Component {
           </style>
 
           <Container >
-            <Header
-                as='h1'
-                content='Aloha Study'
-                inverted
-                textAlign='center'
-                padded container centered
-                style={{
-                  fontSize: '80px',
-                  marginTop: '100px',
-                  marginBottom: '20px',
-                  fontFamily: 'Righteous, cursive',
-                }}
-            />
-            <Header
-                as='h1'
-                content='University of Hawaii at Manoa'
-                inverted
-                textAlign='center'
-                padded container centered
-                style={{
-                  fontSize: '60px',
-                  marginTop: '30px',
-                  marginBottom: '20px', fontFamily: 'Righteous, cursive',
-                }}
-            />
-            <Header
-                as='h2'
-                content='Study Spots Within Reach'
-                inverted
-                textAlign='center'
-                padded container centered
-                style={{
-                  fontSize: '40px',
-                  marginTop: '30px',
-                  marginBottom: '20px', fontFamily: 'Righteous, cursive',
-                }}
-            />
-            <Header
-                as='h2'
-                content='Study Spots Within Reach'
-                inverted
-                textAlign='center'
-                padded container centered
-                style={{
-                  marginTop: '30px',
-                  marginBottom: '140px', fontFamily: 'Righteous, cursive',
-                }}
-            >
-              <Link to="/signup">
-                <Button as='a' size='huge'>
-                  Start Studying!
-                  <Icon name='right arrow'/>
-                </Button>
-              </Link>
-            </Header>
+
             <Grid container stackable inverted verticalAlign='middle'>
               <Grid.Row>
                 <Grid.Column width={8}>
@@ -92,7 +38,7 @@ class Landing extends React.Component {
                       textAlign='center'
                       padded container centered
                       style={{
-                        fontSize: '60px',
+                        fontSize: '30px',
                         marginTop: '30px',
                         marginBottom: '20px', fontFamily: 'Righteous, cursive',
                       }}
@@ -104,18 +50,67 @@ class Landing extends React.Component {
                     textAlign='center'
                     padded container centered
                     style={{
-                      fontSize: '40px',
+                      fontSize: '30px',
                       marginTop: '30px',
                       marginBottom: '20px', fontFamily: 'Righteous, cursive',
                     }}
                 />
+
                 </Grid.Column>
                 <Grid.Column floated='right' width={6}>
-                  <Image bordered rounded size='large' src='/images/uh.jpg'/>
+                  <Card>
+                    <Card.Content>
+                      <Card.Header>Recent Activity</Card.Header>
+                    </Card.Content>
+                    <Card.Content>
+                      <Feed>
+                        <Feed.Event>
+                          <Feed.Label image='/images/avatar/small/jenny.jpg' />
+                          <Feed.Content>
+                            <Feed.Date content='1 day ago' />
+                            <Feed.Summary>
+                              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+
+                        <Feed.Event>
+                          <Feed.Label image='/images/avatar/small/molly.png' />
+                          <Feed.Content>
+                            <Feed.Date content='3 days ago' />
+                            <Feed.Summary>
+                              You added <a>Molly Malone</a> as a friend.
+                            </Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+
+                        <Feed.Event>
+                          <Feed.Label image='/images/avatar/small/elliot.jpg' />
+                          <Feed.Content>
+                            <Feed.Date content='4 days ago' />
+                            <Feed.Summary>
+                              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
+                            </Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+                      </Feed>
+                    </Card.Content>
+                  </Card>
                 </Grid.Column>
+
               </Grid.Row>
             </Grid>
           </Container>
+
+        <Container centered>
+          <Link to="/signup">
+            <Button as='a' size='huge' >
+              Start Studying!
+              <Icon name='right arrow'/>
+            </Button>
+          </Link>
+        </Container>
+
 
           <Segment borderless style={{ padding: '4em 0em' }} vertical>
             <Grid container stackable inverted verticalAlign='middle'>
