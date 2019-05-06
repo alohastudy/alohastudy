@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListSpot from '../pages/ListSpot';
+import AdminList from '../pages/AdminList';
 import ListSpotAdmin from '../pages/ListSpotAdmin';
 import AddSpot from '../pages/AddSpot';
 import EditSpot from '../pages/EditSpot';
@@ -40,6 +41,7 @@ class App extends React.Component {
               <ProtectedRoute path="/view/:_id" component={SpotInfo}/>
               <ProtectedRoute path="/profile/:_id" component={ProfilePage}/>
               <ProtectedRoute path="/editProfile/:_id" component={EditProfile}/>
+              <AdminProtectedRoute path="/adminList" component={AdminList}/>
               <AdminProtectedRoute path="/adminSpots" component={ListSpotAdmin}/>
               <Route path="/signout" component={Signout}/>
               <Route path="/banned" component={Banned}/>
