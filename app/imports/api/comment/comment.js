@@ -10,9 +10,9 @@ const CommentSchema = new SimpleSchema({
   comment: String,
   rating: Number,
   spot_id: String,
-  firstName: String,
-  secondName: String,
-  image: String,
+  // firstName: String,
+  // secondName: String,
+  // image: String,
   createdAt: Date,
   owner: String,
 }, { tracker: Tracker });

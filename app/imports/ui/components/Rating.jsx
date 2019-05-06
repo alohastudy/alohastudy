@@ -24,9 +24,12 @@ class Rating extends React.Component {
             <Icon name='star outline' color='yellow'/>
             <Icon name='star outline' color='yellow'/>
           </div>) : ('')}
-          {this.props.rating <= 1 ? (<div><Icon name='star' color='yellow'/><Icon name='star outline' color='yellow'/>
+          {this.props.rating <= 1 && this.props.rating > 0 ? (<div><Icon name='star' color='yellow'/><Icon name='star outline' color='yellow'/>
           <Icon name='star outline' color='yellow'/>
             <Icon name='star outline' color='yellow'/><Icon name='star outline' color='yellow'/></div>) : ('')}
+          {this.props.rating === 0 ? (<div><Icon name='star outline' color='gray'/><Icon name='star outline' color='gray'/>
+            <Icon name='star outline' color='gray'/><Icon name='star outline' color='gray'/>
+            <Icon name='star outline' color='gray'/></div>) : ('')}
         </Label>
     );
   }
