@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Segment } from 'semantic-ui-react';
+import { Card, Image, Segment, Button } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
@@ -20,19 +20,12 @@ class SpotItem extends React.Component {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
     }
     this.editbutton = '';
-    if (this.props.spot.owner === Meteor.user().username) {
-      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
-        <button class="ui green basic button" size='large'>
+    if (this.props.spot.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      this.editbutton = <div><Link to={`/edit/${this.props.spot._id}`}>
+        <Button color="green" size='large' floated='right'>
           Edit
-        </button>
-      </Link>;
-    }
-    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      this.editbutton = <Link to={`/edit/${this.props.spot._id}`}>
-        <button class="ui green basic button" size='large'>
-          Edit
-        </button>
-      </Link>;
+        </Button>
+      </Link></div>;
     }
   }
 
@@ -43,14 +36,16 @@ class SpotItem extends React.Component {
         <Card color={this.color} fluid>
           <Card.Content>
             <Card.Header>
-              {this.warning}<Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}&nbsp;<Rating rating={this.props.spot.rating}/></Link>
+              {this.warning}
+              {this.editbutton}
+              <Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}&nbsp;<Rating rating={this.props.spot.rating}/></Link>
 
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}, <Link to={`/profile/${username}`}>profile</Link></Card.Meta>
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
                             spotLocation={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
-            {this.editbutton}
+
             <br/>
             <Image.Group fluid floated='left'>
               <Image Style="height: 150px;" src={this.props.spot.image1}/>

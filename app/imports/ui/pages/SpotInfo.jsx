@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Header, Container, Grid, Image, Segment, Card, Feed } from 'semantic-ui-react';
+import { Loader, Header, Container, Grid, Image, Segment, Card, Feed, Button } from 'semantic-ui-react';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Spots } from '/imports/api/spot/spot';
@@ -40,25 +40,25 @@ class SpotInfo extends React.Component {
   renderPage() {
     let verifyButton = '';
     let deleteButton = '';
-    if (this.props.doc.verified === true) {
+    if (this.props.doc.verified === true && Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.warning = '';
-      verifyButton = <Button class="ui green basic button" floated='right' onClick={() => {
+      verifyButton = <Button color="orange" floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
           $set: { verified: false },
         });
-      }}>Unverify</button>;
-    } else {
+      }}>Unverify</Button>;
+    } else if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
       this.warning = <Segment inverted color='red'>UNVERIFIED</Segment>;
-      verifyButton = <button class="ui green basic button" floated='right' onClick={() => {
+      verifyButton = <Button color="green" floated='right' onClick={() => {
         Spots.update(this.props.doc._id, {
           $set: { verified: true },
         });
-      }}>Verify</button>;
+      }}>Verify</Button>;
     }
     if (Meteor.user().username === this.props.doc.owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      deleteButton = <button class="ui green basic button" floated='right' onClick={() => {
+      deleteButton = <Button color="red" floated='right' onClick={() => {
         this.deleter();
-      }}>Delete</button>;
+      }}>Delete</Button>;
     }
     const imageSmall = 'height: 175px;';
     const profile = Profiles.findOne({ owner: this.props.doc.owner });
