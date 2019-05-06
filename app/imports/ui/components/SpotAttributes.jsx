@@ -19,7 +19,7 @@ class SpotAttributes extends React.Component {
           {this.props.spotLocation === 'outdoors' ? ('🌳 Outdoors') : ('🏚️ Indoors')}
           &nbsp;
           {this.props.crowd === 'Empty' ? ('💨 Empty') : ('')}
-          {this.props.crowd === 'Partially Crowded' ? ('👩 Partially Full') : ('')}
+          {this.props.crowd === 'Partially Full' ? ('👩 Partially Full') : ('')}
           {this.props.crowd === 'Half Full' ? ('👨‍👦  Half Full') : ('')}
           {this.props.crowd === 'Crowded' ? ('👨‍👩‍👦‍👦 Crowded') : ('')}
         </div>

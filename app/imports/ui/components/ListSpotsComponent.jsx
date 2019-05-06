@@ -41,7 +41,7 @@ class ListSpotsComponent extends React.Component {
       crowd.push('Empty');
     }
     if (this.props.crowd1) {
-      crowd.push('Partially Crowded');
+      crowd.push('Partially Full');
     }
     if (this.props.crowd2) {
       crowd.push('Half Full');

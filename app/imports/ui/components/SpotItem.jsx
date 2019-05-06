@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Segment, Button } from 'semantic-ui-react';
+import { Card, Image, Segment, Button, Dropdown, Label } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import { withRouter, Link } from 'react-router-dom';
 import Rating from '/imports/ui/components/Rating';
 import SpotAttributes from '/imports/ui/components/SpotAttributes';
 import { Profiles } from '/imports/api/profile/profile';
+import { Spots } from '/imports/api/spot/spot';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SpotItem extends React.Component {
@@ -29,9 +30,39 @@ class SpotItem extends React.Component {
     }
   }
 
+  handleCrowd = (e, { value }) => {
+    // console.log(value);
+    Spots.update(this.props.spot._id, { $set: { crowd: value } });
+    this.props.spot.crowd = value;
+    this.forceUpdate();
+    return true;
+  }
+
   render() {
     const username = Profiles.findOne({ owner: this.props.spot.owner })._id;
     // const username = 'EHyoj69x5WSutxPak';
+    const options = [
+      {
+        key: 'Empty',
+        text: 'Empty',
+        value: 'Empty',
+      },
+      {
+        key: 'Partially Full',
+        text: 'Partially Full',
+        value: 'Partially Full',
+      },
+      {
+        key: 'Half Full',
+        text: 'Half Full',
+        value: 'Half Full',
+      },
+      {
+        key: 'Crowded',
+        text: 'Crowded',
+        value: 'Crowded',
+      },
+    ]
     return (
         <Card color={this.color} fluid>
           <Card.Content>
@@ -39,14 +70,14 @@ class SpotItem extends React.Component {
               {this.warning}
               {this.editbutton}
               <Link to={`/view/${this.props.spot._id}`}>{this.props.spot.name}&nbsp;<Rating rating={this.props.spot.rating}/></Link>
-
             </Card.Header>
             <Card.Meta>Created by {this.props.spot.owner}, <Link to={`/profile/${username}`}>profile</Link></Card.Meta>
             <SpotAttributes noisiness={this.props.spot.noisiness} outlets={this.props.spot.outlets}
                             spotLocation={this.props.spot.location} crowd={this.props.spot.crowd} />
             <br/>
-
-            <br/>
+            <Label size="big">How Crowded is it right now?</Label>
+            <Dropdown selection placeholder='How Crowded is it right now?' options={options} defaultValue={this.props.spot.crowd} onChange={this.handleCrowd}/>
+            <br/><br/>
             <Image.Group fluid floated='left'>
               <Image Style="height: 150px;" src={this.props.spot.image1}/>
               <Image Style="height: 150px;" src={this.props.spot.image2}/>
