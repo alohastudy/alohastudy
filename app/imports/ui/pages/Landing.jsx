@@ -25,7 +25,7 @@ class Landing extends React.Component {
             @import url('https://fonts.googleapis.com/css?family=Righteous');{/*eslint-disable-line*/}
           </style>
 
-          <Container >
+          <Container>
 
             <Grid container stackable inverted verticalAlign='middle'>
               <Grid.Row>
@@ -54,16 +54,24 @@ class Landing extends React.Component {
                       }}
                   />
                   <Header
-                    as='h2'
-                    content='Study Spots Within Reach'
-                    inverted
-                    textAlign='center'
-                    style={{
-                      fontSize: '30px',
-                      marginTop: '30px',
-                      marginBottom: '20px', fontFamily: 'Righteous, cursive',
-                    }}
-                />
+                      as='h2'
+                      content='Study Spots Within Reach'
+                      inverted
+                      textAlign='center'
+                      style={{
+                        fontSize: '30px',
+                        marginTop: '30px',
+                        marginBottom: '20px', fontFamily: 'Righteous, cursive',
+                      }}
+                  />
+                  <Container textAlign='center'>
+                    <Link to="/signup">
+                      <Button size='huge'>
+                        Start Studying!
+                        <Icon name='right arrow'/>
+                      </Button>
+                    </Link>
+                  </Container>
 
                 </Grid.Column>
                 <Grid.Column floated='right' width={6}>
@@ -73,7 +81,7 @@ class Landing extends React.Component {
                     </Card.Content>
                     <Card.Content>
                       <Feed>
-                        {spots.map((spot) => <SpotItemSmall key={spot._id} spot={spot} />)}
+                        {spots.map((spot) => <SpotItemSmall key={spot._id} spot={spot}/>)}
                       </Feed>
                     </Card.Content>
                   </Card>
@@ -82,15 +90,6 @@ class Landing extends React.Component {
               </Grid.Row>
             </Grid>
           </Container>
-
-        <Container>
-          <Link to="/signup">
-            <Button size='huge' >
-              Start Studying!
-              <Icon name='right arrow'/>
-            </Button>
-          </Link>
-        </Container>
 
 
           <Segment style={{ padding: '4em 0em' }} vertical>
