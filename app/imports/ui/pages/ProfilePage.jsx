@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Image, Card, Button } from 'semantic-ui-react';
+import { Container, Header, Loader, Image, Card, Button, Label } from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { Spots } from '/imports/api/spot/spot';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -87,16 +87,22 @@ class ProfilePage extends React.Component {
       //
       //   fetch: ['owner'],
       // });
-      if (Profiles.findOne({ owner: account.username }).role === 'banned') {
-        admin_ban = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unban</Button>;
+
+      if (Profiles.findOne({ owner: account.username }).role === 'admin') {
+        admin_ban = <Button floated='right'>This user is an admin</Button>;
       } else {
-        admin_ban = <Button floated='right' onClick={() => { this.ban(account._id); }}>Ban</Button>;
+        if (Profiles.findOne({ owner: account.username }).role === 'banned') {
+          admin_ban = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unban</Button>;
+        } else {
+          admin_ban = <Button floated='right' onClick={() => { this.ban(account._id); }}>Ban</Button>;
+        }
+        if (Profiles.findOne({ owner: account.username }).role === 'verified') {
+          admin_verify = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unverify</Button>;
+        } else {
+          admin_verify = <Button floated='right' onClick={() => { this.verify(account._id); }}>Verify</Button>;
+        }
       }
-      if (Profiles.findOne({ owner: account.username }).role === 'verified') {
-        admin_verify = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unverify</Button>;
-      } else {
-        admin_verify = <Button floated='right' onClick={() => { this.verify(account._id); }}>Verify</Button>;
-      }
+
     }
     return (
         <Container>
