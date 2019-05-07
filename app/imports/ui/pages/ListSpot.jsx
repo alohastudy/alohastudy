@@ -4,6 +4,8 @@ import { Container, Label, Header, Loader, Button, Input, Checkbox } from 'seman
 import ListSpotsComponent from '/imports/ui/components/ListSpotsComponent';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Profiles } from '/imports/api/profile/profile';
+import { Redirect } from 'react-router';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListSpot extends React.Component {
@@ -24,6 +26,7 @@ class ListSpot extends React.Component {
     this.crowdedness1 = true;
     this.crowdedness2 = true;
     this.crowdedness3 = true;
+    // const isBanned = Profiles.findOne({ owner: Meteor.user().username }).role === 'banned';
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -53,7 +56,9 @@ class ListSpot extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-
+    if (Profiles.findOne({ owner: Meteor.user().username }).role === 'banned') {
+      return <Redirect to={'/banned/'}/>;
+    }
     return (
         <Container>
           <Input onChange={this.handleMessage.bind(this)} placeholder='Please type exact name'/>
@@ -147,33 +152,11 @@ ListSpot.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // this.query = match.params._id;
-  // const query = match.params._id;
-  // console.log("params._id is "+match.params._id);
-  // Get access to Stuff documents.
   const subscription = Meteor.subscribe('SpotVerified');
-  const subscription2 = Meteor.subscribe('Comments');
-  // let interspots = Spots.find({}).fetch();
-  // if (Meteor.isServer) {
-  //   Spots._ensureIndex({
-  //     name: 'text',
-  //   });
-  // }
-  // if (query !== 'undefined' && query !== undefined) {
-  //   // console.log("searching for query, query found not to be undefined");
-  //   interspots = Spots.find({ name: query }).fetch();
-  //   // interspots = Spots.find({
-  //   //   $text:
-  //   //       {
-  //   //         $search: 'benches',
-  //   //       },
-  //   // }).fetch();
-  // }
-  // console.log("query is " + query);
+  const subscription2 = Meteor.subscribe('Profiles');
+
   return {
-    // spots: interspots,
     ready: subscription.ready(),
-    ready2: subscription2.ready(),
-    // query: query,
+    ready2: subscription.ready(),
   };
 })(ListSpot);

@@ -55,7 +55,6 @@ class AddComment extends React.Component {
     }
     const _id = this.props.spotId;
     Spots.update(_id, { $set: { rating: rating } });
-
   }
 
   handleRate = (e, { rating }) => {

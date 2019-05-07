@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spots, SpotSchema } from '/imports/api/spot/spot';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Loader } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SelectField from 'uniforms-semantic/SelectField';
@@ -11,6 +11,9 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Profiles } from '/imports/api/profile/profile';
+import { Redirect } from 'react-router';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 /** Renders the Page for adding a document. */
 class AddSpot extends React.Component {
@@ -28,6 +31,11 @@ class AddSpot extends React.Component {
     if (Profiles.findOne({ owner: Meteor.user().username }).role === 'verified') {
       this.verify = true;
     }
+  }
+
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
+  render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -48,7 +56,11 @@ class AddSpot extends React.Component {
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
-  render() {
+  /** Render the page once subscriptions have been received. */
+  renderPage() {
+    if (Profiles.findOne({ owner: Meteor.user().username }).role === 'banned') {
+      return <Redirect to={'/banned/'}/>;
+    }
     return (
         <Grid container centered>
           <Grid.Column>
@@ -79,4 +91,18 @@ class AddSpot extends React.Component {
   }
 }
 
-export default AddSpot;
+// export default AddSpot;
+/** Require an array of Stuff documents in the props. */
+AddSpot.propTypes = {
+  // query: PropTypes.string.isRequired,
+  // spots: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+export default withTracker(() => {
+  const subscription = Meteor.subscribe('Profiles');
+
+  return {
+    ready: subscription.ready(),
+  };
+})(AddSpot);
