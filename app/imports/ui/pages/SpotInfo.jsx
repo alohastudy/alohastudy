@@ -62,7 +62,7 @@ class SpotInfo extends React.Component {
         this.deleter();
       }}>Delete</Button>;
     }
-    const imageSmall = 'height: 175px;';
+    const imageSmall = { height: '175px' };
     const profile = Profiles.findOne({ owner: this.props.doc.owner });
     return (
         <Container>
@@ -77,7 +77,7 @@ class SpotInfo extends React.Component {
               <Grid.Row>
                 <Grid.Column width={12}>
                   <Header size='huge'>{this.props.doc.name}<Rating rating={this.props.doc.rating}/></Header>
-                  <div Style="margin-top: 40px;">
+                  <div style={{ marginTop: '40px' }}>
                     <SpotAttributes noisiness={this.props.doc.noisiness} outlets={this.props.doc.outlets}
                                     spotLocation={this.props.doc.location} crowd={this.props.doc.crowd}/>
                   </div>
@@ -105,15 +105,15 @@ class SpotInfo extends React.Component {
                   <Image src={this.props.doc.image1} fluid/>
                 </Grid.Column>
 
-                <Grid.Column width={11} Style="padding-left: 30px;">
+                <Grid.Column width={11} style={{ paddingLeft: '30px' }}>
                   <Segment>
                     {this.props.doc.description}
                   </Segment>
                   <Image.Group floated='left'>
-                    <Image Style={imageSmall} src={this.props.doc.image2}/>
-                    <Image Style={imageSmall} src={this.props.doc.image3}/>
-                    <Image Style={imageSmall} src={this.props.doc.image4}/>
-                    <Image Style={imageSmall} src={this.props.doc.image5}/>
+                    <Image style={imageSmall} src={this.props.doc.image2}/>
+                    <Image style={imageSmall} src={this.props.doc.image3}/>
+                    <Image style={imageSmall} src={this.props.doc.image4}/>
+                    <Image style={imageSmall} src={this.props.doc.image5}/>
                   </Image.Group>
                 </Grid.Column>
               </Grid.Row>

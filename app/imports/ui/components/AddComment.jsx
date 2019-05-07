@@ -44,7 +44,7 @@ class AddComment extends React.Component {
   updateSpotRating() {
     let rating = 0;
     function getSum(total) {
-      console.log(total);
+      // console.log(total);
       rating += total.rating;
       return true;
     }
@@ -65,7 +65,7 @@ class AddComment extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
-    console.log(this.props.owner);
+    // console.log(this.props.owner);
     const userProfile = Profiles.findOne({ owner: this.props.owner });
 
     return (
