@@ -1,12 +1,24 @@
 import React from 'react';
-import { Grid, Container, Header, Segment, Image, Divider, Button, Icon, Card, Feed } from 'semantic-ui-react';
+import { Grid, Container, Header, Segment, Image, Divider, Button, Icon, Card, Feed, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { Spots } from '/imports/api/spot/spot';
+import SpotItemSmall from '/imports/ui/components/SpotItemSmall';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
-  render() {
-    return (
 
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
+  render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
+    const spots = Spots.find({},{sort: {rating: -1}, limit: 3}).fetch();
+    // console.log(spots);
+    return (
         <Container className="ui landing top">
 
           <style>
@@ -60,39 +72,11 @@ class Landing extends React.Component {
                 <Grid.Column floated='right' width={6}>
                   <Card>
                     <Card.Content>
-                      <Card.Header>Recent Activity</Card.Header>
+                      <Card.Header>Hot Spots</Card.Header>
                     </Card.Content>
                     <Card.Content>
                       <Feed>
-                        <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/jenny.jpg' />
-                          <Feed.Content>
-                            <Feed.Date content='1 day ago' />
-                            <Feed.Summary>
-                              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-                            </Feed.Summary>
-                          </Feed.Content>
-                        </Feed.Event>
-
-                        <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/molly.png' />
-                          <Feed.Content>
-                            <Feed.Date content='3 days ago' />
-                            <Feed.Summary>
-                              You added <a>Molly Malone</a> as a friend.
-                            </Feed.Summary>
-                          </Feed.Content>
-                        </Feed.Event>
-
-                        <Feed.Event>
-                          <Feed.Label image='/images/avatar/small/elliot.jpg' />
-                          <Feed.Content>
-                            <Feed.Date content='4 days ago' />
-                            <Feed.Summary>
-                              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-                            </Feed.Summary>
-                          </Feed.Content>
-                        </Feed.Event>
+                        {spots.map((spot) => <SpotItemSmall key={spot._id} spot={spot} />)}
                       </Feed>
                     </Card.Content>
                   </Card>
@@ -227,4 +211,19 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+// export default Landing;
+/** Require an array of Stuff documents in the props. */
+Landing.propTypes = {
+  // query: PropTypes.string.isRequired,
+  // spots: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  const subscription = Meteor.subscribe('SpotVerified');
+
+  return {
+    ready: subscription.ready(),
+  };
+})(Landing);

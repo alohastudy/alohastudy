@@ -157,6 +157,6 @@ export default withTracker(() => {
 
   return {
     ready: subscription.ready(),
-    ready2: subscription.ready(),
+    ready2: subscription2.ready(),
   };
 })(ListSpot);

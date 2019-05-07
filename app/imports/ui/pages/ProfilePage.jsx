@@ -54,10 +54,18 @@ class ProfilePage extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const account = Meteor.users.findOne({ username: this.props.profiles.owner });
+
+    let profile = '';
+    if (Profiles.find(this.props.name).fetch().length === 0) {
+      profile = Profiles.findOne({ owner: Meteor.user().username });
+    } else {
+      profile = Profiles.findOne(this.props.name);
+    }
+
+    const account = Meteor.users.findOne({ username: profile.owner });
     let button = '';
-    if (Meteor.user().username === this.props.profiles.owner) {
-      button = <Link to={`/editProfile/${this.props.profiles._id}`}><Button>Edit Profile</Button></Link>;
+    if (Meteor.user().username === profile.owner) {
+      button = <Link to={`/editProfile/${profile._id}`}><Button>Edit Profile</Button></Link>;
     }
     let admin_ban = '';
     let admin_verify = '';
@@ -90,21 +98,21 @@ class ProfilePage extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center" inverted>
-            {this.props.profiles.firstName}&nbsp;
-          {this.props.profiles.secondName}&#39;s Profile
+            {profile.firstName}&nbsp;
+          {profile.secondName}&#39;s Profile
           </Header>
           <br/>
           <Card fluid>
             <Card.Content>
               {admin_ban}{admin_verify}
               <Card.Header>
-                <Image Style="height: 150px;" src={this.props.profiles.image} />
+                <Image Style="height: 150px;" src={profile.image} />
                 <br/>
                 <br/>
-                Status: {this.props.profiles.status}
+                Status: {profile.status}
                 <br/>
                 <br/>
-                Bio: {this.props.profiles.bio}
+                Bio: {profile.bio}
                 <br/>
                 <br/>
                 {button}
@@ -114,11 +122,11 @@ class ProfilePage extends React.Component {
           <Container>
             <Header as="h3" textAlign="center" inverted>
               <br/>
-              {this.props.profiles.firstName}&nbsp;
-            {this.props.profiles.secondName}&#39;s Spots
+              {profile.firstName}&nbsp;
+            {profile.secondName}&#39;s Spots
             </Header>
             <Card.Group>
-              {this.props.spots.map((spot) => <SpotItem key={spot._id} spot={spot} />)}
+              {Spots.find({ owner: profile.owner }).fetch().map((spot) => <SpotItem key={spot._id} spot={spot} />)}
             </Card.Group>
           </Container>
         </Container>
@@ -129,12 +137,12 @@ class ProfilePage extends React.Component {
 /** Require an array of Stuff documents in the props. */
 ProfilePage.propTypes = {
   name: PropTypes.string,
-  profiles: PropTypes.object.isRequired,
-  account: PropTypes.object.isRequired,
+  // profiles: PropTypes.object.isRequired,
+  // account: PropTypes.object.isRequired,
   ready: PropTypes.bool.isRequired,
   ready2: PropTypes.bool.isRequired,
   ready3: PropTypes.bool.isRequired,
-  spots: PropTypes.array,
+  // spots: PropTypes.array,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -155,13 +163,13 @@ export default withTracker(({ match }) => {
     subscription3 = true;
   }
 
-  let profile = '';
-  if (Profiles.find(documentId).fetch().length === 0) {
-    profile = Profiles.findOne({ owner: Meteor.user().username });
-  } else {
-    profile = Profiles.findOne(documentId);
-  }
-  const account = Meteor.users.findOne({ username: profile.owner });
+  // let profile = '';
+  // if (Profiles.find(documentId).fetch().length === 0) {
+  //   profile = Profiles.findOne({ owner: Meteor.user().username });
+  // } else {
+  //   profile = Profiles.findOne(documentId);
+  // }
+  // const account = Meteor.users.findOne({ username: profile.owner });
   return {
     name: documentId,
     ready: subscription.ready(),
@@ -169,8 +177,8 @@ export default withTracker(({ match }) => {
     ready3: subscription3,
     // profiles: Profiles.findOne({ owner: Meteor.users.findOne({ _id: documentId }).username }),
     // profiles: Profiles.findOne(documentId),
-    profiles: profile,
-    account: account,
-    spots: Spots.find({ owner: profile.owner }).fetch(),
+    // profiles: profile,
+    // account: account,
+    // spots: Spots.find({ owner: profile.owner }).fetch(),
   };
 })(ProfilePage);

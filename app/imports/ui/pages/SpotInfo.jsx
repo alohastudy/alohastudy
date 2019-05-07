@@ -124,7 +124,7 @@ class SpotInfo extends React.Component {
               <Grid.Column>
                 <AddComment owner={Meteor.user().username} spotId={this.props.doc._id}/>
                 <Feed>
-                  {this.props.comments.map((comment, index) => <Comment key={index} comment={comment}/>)}
+                  {Comments.find({ spot_id: this.props.doc._id }).fetch().map((comment, index) => <Comment key={index} comment={comment}/>)}
                 </Feed>
               </Grid.Column>
             </Grid>
@@ -140,7 +140,7 @@ SpotInfo.propTypes = {
   ready: PropTypes.bool.isRequired,
   ready2: PropTypes.bool.isRequired,
   ready3: PropTypes.bool.isRequired,
-  comments: PropTypes.array.isRequired,
+  // comments: PropTypes.array.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -154,7 +154,7 @@ export default withTracker(({ match }) => {
   const docTemp = Spots.findOne(documentId);
   return {
     doc: docTemp,
-    comments: Comments.find({ spot_id: docTemp._id }).fetch(),
+    // comments: Comments.find({ spot_id: docTemp._id }).fetch(),
     ready: subscription.ready(),
     ready2: subscription2.ready(),
     ready3: subscription3.ready(),

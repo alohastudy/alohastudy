@@ -50,7 +50,7 @@ class EditSpot extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
-                <HiddenField name='rating' value={3}/>
+                <HiddenField name='rating' value={this.props.doc.rating}/>
                 <HiddenField name='verified' value={this.verify}/>
               </Segment>
             </AutoForm>
