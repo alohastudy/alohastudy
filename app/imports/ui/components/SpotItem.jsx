@@ -78,12 +78,12 @@ class SpotItem extends React.Component {
             <Label size="large">How Crowded is it right now?</Label>
             <Dropdown selection placeholder='How Crowded is it right now?' options={options} defaultValue={this.props.spot.crowd} onChange={this.handleCrowd}/>
             <br/><br/>
-            <Image.Group fluid floated='left'>
-              <Image Style="height: 150px;" src={this.props.spot.image1}/>
-              <Image Style="height: 150px;" src={this.props.spot.image2}/>
-              <Image Style="height: 150px;" src={this.props.spot.image3}/>
-              <Image Style="height: 150px;" src={this.props.spot.image4}/>
-              <Image Style="height: 150px;" src={this.props.spot.image5}/>
+            <Image.Group floated='left'>
+              <Image style={{ height: '150px' }} src={this.props.spot.image1}/>
+              <Image style={{ height: '150px' }} src={this.props.spot.image2}/>
+              <Image style={{ height: '150px' }} src={this.props.spot.image3}/>
+              <Image style={{ height: '150px' }} src={this.props.spot.image4}/>
+              <Image style={{ height: '150px' }} src={this.props.spot.image5}/>
             </Image.Group>
             <Card.Description><p>{this.props.spot.description}</p></Card.Description>
           </Card.Content>

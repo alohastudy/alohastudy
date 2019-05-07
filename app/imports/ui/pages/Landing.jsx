@@ -16,7 +16,7 @@ class Landing extends React.Component {
   }
 
   renderPage() {
-    const spots = Spots.find({},{sort: {rating: -1}, limit: 3}).fetch();
+    const spots = Spots.find({}, { sort: { rating: -1 }, limit: 3 }).fetch();
     // console.log(spots);
     return (
         <Container className="ui landing top">
@@ -35,7 +35,6 @@ class Landing extends React.Component {
                       content='Aloha Study'
                       inverted
                       textAlign='center'
-                      padded container centered
                       style={{
                         fontSize: '80px',
                         marginTop: '100px',
@@ -48,7 +47,6 @@ class Landing extends React.Component {
                       content='University of Hawaii at Manoa'
                       inverted
                       textAlign='center'
-                      padded container centered
                       style={{
                         fontSize: '30px',
                         marginTop: '30px',
@@ -60,7 +58,6 @@ class Landing extends React.Component {
                     content='Study Spots Within Reach'
                     inverted
                     textAlign='center'
-                    padded container centered
                     style={{
                       fontSize: '30px',
                       marginTop: '30px',
@@ -86,9 +83,9 @@ class Landing extends React.Component {
             </Grid>
           </Container>
 
-        <Container centered>
+        <Container>
           <Link to="/signup">
-            <Button as='a' size='huge' >
+            <Button size='huge' >
               Start Studying!
               <Icon name='right arrow'/>
             </Button>
@@ -96,7 +93,7 @@ class Landing extends React.Component {
         </Container>
 
 
-          <Segment borderless style={{ padding: '4em 0em' }} vertical>
+          <Segment style={{ padding: '4em 0em' }} vertical>
             <Grid container stackable inverted verticalAlign='middle'>
               <Grid.Row>
                 <Grid.Column width={8}>
@@ -134,7 +131,7 @@ class Landing extends React.Component {
                 add the name, images, and attributes. Users can input data and choose attributes from a dragdown menu.
               </p>
               <Link to={'/addSpots/'}>
-                <Button as='a' size='large'>
+                <Button size='large'>
                   Add Spots
                 </Button>
               </Link>
@@ -161,7 +158,7 @@ class Landing extends React.Component {
                 verified spots with the spot<span>&#39;</span>s name and attributes describing its condition.
               </p>
               <Link to={'/listSpots/'}>
-                <Button as='a' size='large'>
+                <Button size='large'>
                   List Spots
                 </Button>
               </Link>

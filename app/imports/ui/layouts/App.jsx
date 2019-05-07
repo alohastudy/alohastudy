@@ -26,7 +26,7 @@ class App extends React.Component {
   render() {
     return (
         <Router>
-          <div Style='background-color: #36AA48'>
+          <div style={{ backgroundColor: '#36AA48' }}>
             <NavBar/>
             <br/>
             <Switch>

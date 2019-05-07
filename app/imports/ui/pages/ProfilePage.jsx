@@ -27,6 +27,7 @@ class ProfilePage extends React.Component {
         $set: { role: 'verified' },
       });
     }
+    this.forceUpdate();
     return true;
   }
 
@@ -38,6 +39,7 @@ class ProfilePage extends React.Component {
         $set: { role: 'user' },
       });
     }
+    this.forceUpdate();
     return true;
   }
 
@@ -49,6 +51,7 @@ class ProfilePage extends React.Component {
         $set: { role: 'banned' },
       });
     }
+    this.forceUpdate();
     return true;
   }
 
@@ -69,21 +72,21 @@ class ProfilePage extends React.Component {
     }
     let admin_ban = '';
     let admin_verify = '';
-    Meteor.users.allow({ // this statement is likely useless
-      update: function (userId) {
-        // only admin can insert
-        const u = Meteor.users.findOne({ _id: userId });
-        return (u.isAdmin);
-      } });
-    if (Roles.userIsInRole(Meteor.userId(), 'admin')) { // this if statement is likely useless
-      Meteor.users.allow({
-        update() {
-        // Can only change your own documents.
-        return true;
-        },
-
-        fetch: ['owner'],
-      });
+    // Meteor.users.allow({ // this statement is likely useless
+    //   update: function (userId) {
+    //     // only admin can insert
+    //     const u = Meteor.users.findOne({ _id: userId });
+    //     return (u.isAdmin);
+    //   } });
+    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      // Meteor.users.allow({ // this if statement is likely useless
+      //   update() {
+      //   // Can only change your own documents.
+      //   return true;
+      //   },
+      //
+      //   fetch: ['owner'],
+      // });
       if (Profiles.findOne({ owner: account.username }).role === 'banned') {
         admin_ban = <Button floated='right' onClick={() => { this.userify(account._id); }}>Unban</Button>;
       } else {
@@ -106,7 +109,7 @@ class ProfilePage extends React.Component {
             <Card.Content>
               {admin_ban}{admin_verify}
               <Card.Header>
-                <Image Style="height: 150px;" src={profile.image} />
+                <Image style={{ height: '150px' }} src={profile.image} />
                 <br/>
                 <br/>
                 Status: {profile.status}

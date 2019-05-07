@@ -14,13 +14,13 @@ class NavBar extends React.Component {
   }
 
   renderPage() {
-    const menuStyle = { marginBottom: '10px' };
+    const menuStyle = { marginBottom: '10px', backgroundColor: '#0ed145' };
     const itemStyle = { marginTop: 'auto', fontSize: '25px', fontFamily: 'Righteous, cursive' };
     // const profileID = Profiles.findOne({ owner: 'john@foo.com' })._id;
     // const profileID = 'YEWw8gagcdJQrqRZc';
     const profileID = 'myProfile';
     return (
-        <Menu style={menuStyle} size='massive' attached='top' borderless inverted Style='background-color: #0ed145'>
+        <Menu style={menuStyle} size='massive' attached='top' borderless inverted>
           <style /* eslint-disable-next-line */>
             @import url('https://fonts.googleapis.com/css?family=Righteous');
           </style>

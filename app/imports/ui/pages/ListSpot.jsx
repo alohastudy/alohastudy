@@ -71,7 +71,7 @@ class ListSpot extends React.Component {
           <br/><br/>
 
           <Label>
-            <Label size="large" Style="background-color: silver;">Noise</Label>
+            <Label size="large" style={{ backgroundColor: 'silver' }}>Noise</Label>
             <Label>
               <Checkbox label="Quiet" defaultChecked onClick={() => { this.noise0 = !this.noise0; this.trySearch(); }} />
             </Label>
@@ -84,7 +84,7 @@ class ListSpot extends React.Component {
           </Label>
 
           <Label>
-            <Label size="large" Style="background-color: silver;">Outlets</Label>
+            <Label size="large" style={{ backgroundColor: 'silver' }}>Outlets</Label>
             <Label>
               <Checkbox label="None" defaultChecked onClick={() => { this.outlets0 = !this.outlets0; this.trySearch(); }} />
             </Label>
@@ -97,7 +97,7 @@ class ListSpot extends React.Component {
           </Label>
 
           <Label>
-            <Label size="large" Style="background-color: silver;">Location</Label>
+            <Label size="large" style={{ backgroundColor: 'silver' }}>Location</Label>
             <Label>
               <Checkbox label="Outdoors" defaultChecked onClick={() => { this.outdoors = !this.outdoors; this.trySearch(); }} />
             </Label>
@@ -107,7 +107,7 @@ class ListSpot extends React.Component {
           </Label>
 
           <Label>
-            <Label size="large" Style="background-color: silver;">Crowdedness</Label>
+            <Label size="large" style={{ backgroundColor: 'silver' }}>Crowdedness</Label>
             <Label>
               <Checkbox label="Empty" defaultChecked onClick={() => { this.crowdedness0 = !this.crowdedness0; this.trySearch(); }} />
             </Label>
