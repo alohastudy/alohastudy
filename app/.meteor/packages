@@ -35,3 +35,8 @@ alanning:roles                   # https://github.com/alanning/meteor-roles
 
 # Prototyping only
 insecure@1.0.7                         # Enable client-side manipulation of Mongo collections.
+meteortesting:mocha
+xolvio:cleaner
+dburles:factory
+hwillson:stub-collections
+templating

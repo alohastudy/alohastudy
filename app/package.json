@@ -4,8 +4,10 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "bcrypt": "^3.0.6",
+    "chai": "^4.2.0",
     "classnames": "^2.2.6",
     "core-js": "^2.6.5",
+    "faker": "^4.1.0",
     "graphql": "^0.8.2",
     "meteor-node-stubs": "^0.4.1",
     "prop-types": "^15.7.2",
@@ -22,6 +24,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
